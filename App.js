@@ -11,5 +11,7 @@ App({
   onError: function (msg) {
     console.log(msg)
   },
-  globalData: 'I am global data'
+  globalData: {
+    userInfo: null
+  }
 })

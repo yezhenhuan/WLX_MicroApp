@@ -1,20 +1,47 @@
 {
   "pages": [
-    "pages/Intro/Index",
-    "pages/Shop/Index"
+    "pages/index/index",
+    "pages/Start/Index",
+    "pages/classify/index",
+    "pages/cart/index",
+    "pages/user/index"
   ],
   "window": {
-    "navigationBarTitleText": "智慧门店"
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "微领袖咖啡厅",
+    "backgroundColor": "#f8f8f8",
+    "backgroundTextStyle": "dark"
   },
   "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#479de6",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
     "list": [
       {
-        "pagePath": "pages/Intro/index",
-        "text": "首页"
+        "pagePath": "pages/index/index",
+        "iconPath": "assets/images/iconfont-home.png",
+        "selectedIconPath": "assets/images/iconfont-home-active.png",
+        "text": "主页"
       },
       {
-        "pagePath": "pages/Intro/index",
-        "text": "日志"
+        "pagePath": "pages/classify/index",
+        "iconPath": "assets/images/iconfont-list.png",
+        "selectedIconPath": "assets/images/iconfont-list-active.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "iconPath": "assets/images/iconfont-cart.png",
+        "selectedIconPath": "assets/images/iconfont-cart-active.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "assets/images/iconfont-user.png",
+        "selectedIconPath": "assets/images/iconfont-user-active.png",
+        "text": "我的"
       }
     ]
   },
