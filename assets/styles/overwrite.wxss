@@ -1,0 +1,20 @@
+Page {
+  background-color: #f7f7f7;
+  font-family: Microsoft Yahei;
+  font-size: 14px;
+}
+
+input {
+  height: 2rem;
+  font-size: 16px;
+}
+
+input:focus {
+  height: 2rem;
+  font-size: 16px;
+}
+
+button {
+  font-family: Microsoft Yahei;
+  font-weight: normal;
+}

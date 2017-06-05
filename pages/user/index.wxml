@@ -1,2 +1,7 @@
-<!--index.wxml-->
-<text>index.wxml</text>
+<view class="container">
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="/assets/images/logo.jpg" background-size="cover"></image>
+    <text class="userinfo-nickname">微领袖智慧门店</text>
+  </view>
+  <view class="logout" bindtap="logout">登出账号</view>
+</view>

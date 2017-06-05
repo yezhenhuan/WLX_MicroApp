@@ -1,0 +1,182 @@
+.icon {
+  width: 21px;
+  height: 21px;
+  vertical-align: middle;
+}
+
+.padding15 {
+  padding: 15px;
+}
+
+.padding08 {
+  padding: 0 8px;
+}
+
+.marginTop10 {
+  margin-top: 10px;
+}
+
+.marginLeft5 {
+  margin-left: 5px;
+}
+.marginLeft15{
+  margin-left: 15px;
+}
+.marginBottom5 {
+  margin-bottom: 5px;
+}
+
+.marginBottom10 {
+  margin-bottom: 10px;
+}
+
+.marginBottom15 {
+  margin-bottom: 15px;
+}
+
+.paddingTop10 {
+  padding-top: 10px;
+}
+
+.paddingTop15 {
+  padding-top: 15px;
+}
+
+.paddingBottom5 {
+  padding-bottom: 5px;
+}
+
+.listBox {
+  background: #fff;
+  border-top: solid 1px #eee;
+  border-bottom: solid 1px #eee;
+}
+
+.displayRow {
+  display: flex;
+  flex-direction: column;
+}
+
+.displayColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.floatLeft {
+  float: left;
+}
+
+.floatRight {
+  float: right;
+}
+
+.fontBold {
+  font-weight: bold;
+}
+
+.fontWeight700 {
+  font-weight: 700;
+}
+
+.placeHolder {
+  color: #999;
+  font-family: Microsoft Yahei;
+}
+
+.font12 {
+  font-size: 12px;
+}
+
+.font14 {
+  font-size: 14px;
+}
+
+.font16 {
+  font-size: 16px;
+}
+
+.font18 {
+  font-size: 18px;
+}
+
+.lineHeight18 {
+  line-height: 18px;
+}
+
+.lineHeight21 {
+  line-height: 21px;
+}
+
+.color0 {
+  color: #000;
+}
+
+.color6 {
+  color: #666;
+}
+
+.color9 {
+  color: #999;
+}
+
+.colorRed {
+  color: #f13b3b;
+}
+
+.borderBtm {
+  border-bottom: solid 1px #eee;
+}
+
+.listBox {
+  background: #fff;
+  border-top: solid 1px #eee;
+  border-bottom: solid 1px #eee;
+}
+
+.txtAlignRight {
+  text-align: right;
+}
+
+.txtAlignLeft {
+  text-align: left;
+}
+
+.txtAlignCenter {
+  text-align: center;
+}
+
+.button {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  color: #f13b3b;
+  border: solid 1px #f13b3b;
+  background: none;
+  margin-bottom: 0;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.bgColorF7 {
+  background-color: #f7f7f7;
+}
+
+.bgColorF {
+  font-size: 12px;
+  color: #999;
+  background-color: #fff;
+}
+.borderNone{
+  border:none;
+}

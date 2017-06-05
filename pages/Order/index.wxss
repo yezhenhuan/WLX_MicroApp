@@ -1,0 +1,53 @@
+.swiper-tab {
+  width: 100%;
+  border-bottom: 2px solid #eee;
+  text-align: center;
+  line-height: 80rpx;
+}
+
+.swiper-tab-item {
+  display: inline-block;
+  width: 20%;
+  color: #666;
+}
+
+.on {
+  color: #ea3d39;
+  border-bottom: 2px solid #ea3d39;
+}
+
+.swiper-box {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.productListTitle {
+  padding: 10px 10px 10px 0;
+  line-height: 20px;
+}
+
+.productListContent {
+  display: flex;
+  flex-direction: row;
+  padding: 15px 15px 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.productListImg {
+  display: flex;
+  flex-direction: row;
+  width: 137rpx;
+  height: 108rpx;
+  margin-right: 10px;
+}
+
+.productItemTitle {
+  margin-bottom: 5px;
+}
+
+.productListBottom {
+  height: 30px;
+  padding: 20px 10px 10px 0;
+}

@@ -1,0 +1,7 @@
+.listBoxWall {
+    background: #F5F5F5;
+    border: solid 1px #eee;
+    border-radius: 5px;
+    padding: 5px 10px;
+    line-height: 45px;
+}

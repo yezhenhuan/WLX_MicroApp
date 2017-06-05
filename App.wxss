@@ -1,3 +1,3 @@
-@import 'assets/styles/weui.wxss';
-@import 'assets/styles/prompt.wxss';
-@import 'assets/styles/skyvow.wxss';
+@import 'assets/styles/overwrite.wxss';
+@import 'assets/styles/common.wxss';
+

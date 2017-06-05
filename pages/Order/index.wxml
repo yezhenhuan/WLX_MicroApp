@@ -1,0 +1,213 @@
+<view class="swiper-tab">
+  <view class="swiper-tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">待付款</view>
+  <view class="swiper-tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">已付款</view>
+  <view class="swiper-tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">已消费</view>
+  <view class="swiper-tab-item {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">待退款</view>
+  <view class="swiper-tab-item {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="swichNav">已退款</view>
+</view>
+
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 80}}px" bindchange="bindChange">
+  <swiper-item>
+    <view class="myOrderCon">
+      <view class="listBox marginTop10 padding08" bindtap="showOrderDetail" data-orderId="20170524175758111506">
+        <view class="productListTitle borderBtm">
+          <image src="/assets/images/Icon/order_putong.png" class="icon"></image>
+          <text class="font12 marginLeft5">验单号：5255241248</text>
+          <text class="floatRight color9 font12">订单已支付</text>
+        </view>
+        <view class="productListContent">
+          <image src="/assets/images/proImg.jpg" class="productListImg"></image>
+          <view class="productItemDesc">
+            <view class="productItemTitle">
+              <text>新鲜时令水果一斤，可外送，10斤起送！</text>
+            </view>
+            <view class="productItemTitle color9 font12">
+              <text>A款</text>
+              <text class="floatRight">x 1</text>
+            </view>
+            <view class="productItemTitle colorRed font12">
+              <text class="floatLeft">￥18</text>
+              <text class="floatRight">合计:18.01</text>
+            </view>
+          </view>
+        </view>
+        <view class="productListContent">
+          <image src="/assets/images/proImg.jpg" class="productListImg"></image>
+          <view class="productItemDesc">
+            <view class="productItemTitle">
+              <text>新鲜时令水果一斤，可外送，10斤起送！</text>
+            </view>
+            <view class="productItemTitle color9 font12">
+              <text>A款</text>
+              <text class="floatRight">x 1</text>
+            </view>
+            <view class="productItemTitle colorRed font12">
+              <text class="floatLeft">￥18</text>
+              <text class="floatRight">合计:18.01</text>
+            </view>
+          </view>
+        </view>
+        <view class="productListBottom">
+          <text class="font12 color9">订单编号：20170524175758111506</text>
+          <text class="font12 floatRight button">去消费</text>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <swiper-item>
+   <view class="myOrderCon">
+      <view class="listBox marginTop10 padding08">
+        <view class="productListTitle borderBtm">
+          <image src="/assets/images/Icon/order_putong.png" class="icon"></image>
+          <text class="font12 marginLeft5">验单号：5255241248</text>
+          <text class="floatRight color9 font12">订单已支付</text>
+        </view>
+        <view class="productListContent">
+          <image src="/assets/images/proImg.jpg" class="productListImg"></image>
+          <view class="productItemDesc">
+            <view class="productItemTitle">
+              <text>新鲜时令水果一斤，可外送，10斤起送！</text>
+            </view>
+            <view class="productItemTitle color9 font12">
+              <text>A款</text>
+              <text class="floatRight">x 1</text>
+            </view>
+            <view class="productItemTitle colorRed font12">
+              <text class="floatLeft">￥18</text>
+              <text class="floatRight">合计:18.01</text>
+            </view>
+          </view>
+        </view>
+        <view class="productListContent">
+          <image src="/assets/images/proImg.jpg" class="productListImg"></image>
+          <view class="productItemDesc">
+            <view class="productItemTitle">
+              <text>新鲜时令水果一斤，可外送，10斤起送！</text>
+            </view>
+            <view class="productItemTitle color9 font12">
+              <text>A款</text>
+              <text class="floatRight">x 1</text>
+            </view>
+            <view class="productItemTitle colorRed font12">
+              <text class="floatLeft">￥18</text>
+              <text class="floatRight">合计:18.01</text>
+            </view>
+          </view>
+        </view>
+        <view class="productListBottom">
+          <text class="font12 color9">订单编号：20170524175758111506</text>
+          <text class="font12 floatRight">去消费</text>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="myOrderCon">
+      <view class="listBox marginTop10 padding08">
+        <view class="productListTitle borderBtm">
+          <image src="/assets/images/Icon/order_putong.png" class="icon"></image>
+          <text class="font12 marginLeft5">验单号：5255241248</text>
+          <text class="floatRight color9 font12">订单已支付</text>
+        </view>
+        <view class="productListContent">
+          <image src="/assets/images/proImg.jpg" class="productListImg"></image>
+          <view class="productItemDesc">
+            <view class="productItemTitle">
+              <text>新鲜时令水果一斤，可外送，10斤起送！</text>
+            </view>
+            <view class="productItemTitle color9 font12">
+              <text>A款</text>
+              <text class="floatRight">x 1</text>
+            </view>
+            <view class="productItemTitle colorRed font12">
+              <text class="floatLeft">￥18</text>
+              <text class="floatRight">合计:18.01</text>
+            </view>
+          </view>
+        </view>
+        <view class="productListBottom">
+          <text class="font12 color9">订单编号：20170524175758111506</text>
+          <text class="font12 floatRight">去消费</text>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="myOrderCon">
+      <view class="listBox marginTop10 padding08">
+        <view class="productListTitle borderBtm">
+          <image src="/assets/images/Icon/order_putong.png" class="icon"></image>
+          <text class="font12 marginLeft5">验单号：5255241248</text>
+          <text class="floatRight color9 font12">订单已支付</text>
+        </view>
+        <view class="productListContent">
+          <image src="/assets/images/proImg.jpg" class="productListImg"></image>
+          <view class="productItemDesc">
+            <view class="productItemTitle">
+              <text>新鲜时令水果一斤，可外送，10斤起送！</text>
+            </view>
+            <view class="productItemTitle color9 font12">
+              <text>A款</text>
+              <text class="floatRight">x 1</text>
+            </view>
+            <view class="productItemTitle colorRed font12">
+              <text class="floatLeft">￥18</text>
+              <text class="floatRight">合计:18.01</text>
+            </view>
+          </view>
+        </view>
+        <view class="productListContent">
+          <image src="/assets/images/proImg.jpg" class="productListImg"></image>
+          <view class="productItemDesc">
+            <view class="productItemTitle">
+              <text>新鲜时令水果一斤，可外送，10斤起送！</text>
+            </view>
+            <view class="productItemTitle color9 font12">
+              <text>A款</text>
+              <text class="floatRight">x 1</text>
+            </view>
+            <view class="productItemTitle colorRed font12">
+              <text class="floatLeft">￥18</text>
+              <text class="floatRight">合计:18.01</text>
+            </view>
+          </view>
+        </view>
+        <view class="productListBottom">
+          <text class="font12 color9">订单编号：20170524175758111506</text>
+          <text class="font12 floatRight">去消费</text>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="myOrderCon">
+      <view class="listBox marginTop10 padding08">
+        <view class="productListTitle borderBtm">
+          <image src="/assets/images/Icon/order_putong.png" class="icon"></image>
+          <text class="font12 marginLeft5">验单号：5255241248</text>
+          <text class="floatRight color9 font12">订单已支付</text>
+        </view>
+        <view class="productListContent">
+          <image src="/assets/images/proImg.jpg" class="productListImg"></image>
+          <view class="productItemDesc">
+            <view class="productItemTitle">
+              <text>新鲜时令水果一斤，可外送，10斤起送！</text>
+            </view>
+            <view class="productItemTitle color9 font12">
+              <text>A款</text>
+              <text class="floatRight">x 1</text>
+            </view>
+            <view class="productItemTitle colorRed font12">
+              <text class="floatLeft">￥18</text>
+              <text class="floatRight">合计:18.01</text>
+            </view>
+          </view>
+        </view>
+        <view class="productListBottom">
+          <text class="font12 color9">订单编号：20170524175758111506</text>
+          <text class="font12 floatRight">去消费</text>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>

@@ -1,0 +1,71 @@
+<view class="container">
+  <view class="orderTitle font12 marginBottom15 bgColorF">
+    <image src="/assets/images/Icon/orderIcon.png" class="icon"></image>
+    <text class="marginLeft5">订单号：20070524175758111506</text>
+    <text class="floatRight">已完成</text>
+  </view>
+  <view class="orderQrCodeContainer bgColorF">
+    <view class="orderQrCodeTop">
+      <view class="font16 txtAlignCenter marginBottom10">验单号：552552418248</view>
+      <image src="/assets/images/qrcode.png" class="center-block yandanqrCode"></image>
+      <view class="font12 marginBottom15 color9">使用时向服务员出示此二维码</view>
+    </view>
+    <view class="orderQrCodeBottom bgColorF7 txtAlignLeft font12 color6 padding15  ">
+      <view class="marginBottom5">有效日期：2017.05.20 - 2018.05.20</view>
+      <view class="marginBottom5">可用时间：如下指定日期2016-02-07到2016-02-14不可使用10:30 - 22:30</view>
+    </view>
+  </view>
+  <view class="buyProContainer bgColorF">
+    <text class="font16 marginLeft15">已选购商品</text>
+    <view class="bgColorF7">
+      <view class="listBox marginTop10 borderNone">
+        <view class="productListContent padding15 bgColorF7 marginBottom10">
+          <image src="/assets/images/proImg.jpg" class="productListImg"></image>
+          <view class="productItemDesc">
+            <view class="productItemTitle">
+              <text>新鲜时令水果一斤，可外送，10斤起送！</text>
+            </view>
+            <view class="productItemTitle color9 font12">
+              <text>A款</text>
+              <text class="floatRight">x 1</text>
+            </view>
+          </view>
+        </view>
+        <view class="productListContent  padding15 bgColorF7 marginBottom10">
+          <image src="/assets/images/proImg.jpg" class="productListImg"></image>
+          <view class="productItemDesc">
+            <view class="productItemTitle">
+              <text>新鲜时令水果一斤，可外送，10斤起送！</text>
+            </view>
+            <view class="productItemTitle color9 font12">
+              <text>A款</text>
+              <text class="floatRight">x 1</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="billInfo bgColorF">
+    <view class="billListItem">
+      <text>商品总价</text>
+      <text class="floatRight">￥18.01</text>
+    </view>
+    <view class="billListItem">
+      <text>会员等级优惠</text>
+      <text class="floatRight">￥18.01</text>
+    </view>
+    <view class="billListItem">
+      <text>积分抵扣</text>
+      <text class="floatRight">￥18.01</text>
+    </view>
+    <view class="billListItem">
+      <text>余额支付</text>
+      <text class="floatRight">￥18.01</text>
+    </view>
+    <view class="billListItem font16">
+      <text>实付款</text>
+      <text class="floatRight colorRed">￥18.01</text>
+    </view>
+  </view>
+</view>

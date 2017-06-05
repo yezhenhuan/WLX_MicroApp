@@ -1,0 +1,59 @@
+.container {
+  background-color: #f7f7f7;
+}
+
+.orderTitle {
+  padding: 15px 15px;
+  display: block;
+  border-bottom: solid 1px #eee;
+}
+
+.orderQrCodeContainer {
+  text-align: center;
+  padding: 15px 15px;
+}
+
+.yandanqrCode {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 240rpx;
+  height: 240rpx;
+}
+
+.buyProContainer {
+  color: #000;
+}
+
+.productListTitle {
+  padding: 10px 10px 10px 0;
+  line-height: 20px;
+}
+
+.productListContent {
+  display: flex;
+  flex-direction: row;
+}
+
+.productListImg {
+  display: flex;
+  flex-direction: row;
+  width: 137rpx;
+  height: 108rpx;
+  margin-right: 10px;
+}
+
+.productItemDesc {
+  width: 100%;
+}
+
+.productItemTitle {
+  margin-bottom: 5px;
+}
+
+.billInfo {
+  padding: 15px;
+}
+
+.billListItem {
+  margin: 0 0 10px;
+}
