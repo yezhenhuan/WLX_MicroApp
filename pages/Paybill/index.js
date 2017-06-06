@@ -7,23 +7,27 @@ Page({
     pickedShopName: '',//选取的店铺名称
     shopList: null,//店铺列表 
 
-    rateDiscountMoney: 0,//等级折扣金额 *
+    totalMoney: '',
+    rateDiscount: '0.2',
+    unRebateMoney: '',
+    useScore: 0,
+    scoreDiscountMoney: '0',
+    rateDiscountMoney: 0,
+    realPayMoney: 0,
+    totalScore: '1500',
+    maxUseScore: '0',
+    scoreCanDisCount: '0',
+    score2Money: '0.1',
+    balance: '500.00',
+    useBalance: 0,
+    totalBalance: '650',
+    realMoney: '0',
+    payType: '1',
+    chkUnrebate: false,
+    chkUseScore: true,
+    chkUseBalance: true,
 
-    totalMoney: '',//消费金额 *
-    totalScore: 1000,//总积分 *
-    totalBalance: 168.00,//总余额 *
-    totalUndiscountMoney: '',//不优惠金额 *
-
-    useScore: 20,//使用积分 *
-    useBalance: 10,//使用余额 *
-    payType: 1,//支付类型，微信内支付
-
-    isCheckUndiscount: false,//是否选中不优惠金额
-    isCheckUseScore: true,//是否选中使用积分
-    isCheckUseBalance: true,//是否选中使用余额
-
-    rateDiscount:0.1,//等级折扣 *
-    balancePayText: true
+    isBalancePay: true
   },
   onLoad: function (options) {
     //发送请求，请求实际数据
@@ -42,6 +46,7 @@ Page({
   onShareAppMessage: function () {
 
   },
+  //店铺改变
   bindShopChange: function (e) {
     this.setData({
       pickedShopIndex: e.detail.value
@@ -55,33 +60,40 @@ Page({
       pickedShopName: pickedShopName
     });
   },
-  checkUndiscount: function () {
-    var isCheck = !this.data.isCheckUndiscount;
-    this.setData({
-      isCheckUndiscount: isCheck
-    });
-  },
+  //消费金额输入框数值改变
   totalMoneyChange: function (event) {
     this.clearNoNum(event, 'totalMoney', false);
     this.setData({
-      totalUndiscountMoney: ''
-    })
+      unRebateMoney: ''
+    });
+    this.calcPayMoney();
   },
+  //消费金额输入框失去焦点
   totalMoneyBlur: function (event) {
     this.clearNoNum(event, 'totalMoney', true);
+    this.calcPayMoney();
   },
-  totalUndiscountMoneyChange: function (event) {
+  //选取不可优惠金额
+  checkUndiscount: function () {
+    var isCheck = !this.data.chkUnrebate;
+    this.setData({
+      chkUnrebate: isCheck
+    });
+  },
+  //不可优惠输入框数值改变
+  unRebateMoneyChange: function (event) {
     if (this.data.totalMoney != "") {
-      if (this.data.totalUndiscountMoney != "") {
-        if (isNaN(this.data.totalUndiscountMoney)) {
+      if (this.data.unRebateMoney != "") {
+        if (isNaN(this.data.unRebateMoney)) {
           this.data.unRebateMoney = '';
         }
-        if (parseFloat(this.data.totalUndiscountMoney) > parseFloat(this.data.totalMoney)) {
+        if (parseFloat(this.data.unRebateMoney) > parseFloat(this.data.totalMoney)) {
           this.setData({
-            totalUndiscountMoney: this.data.totalMoney
+            unRebateMoney: this.data.totalMoney
           });
         }
-        this.clearNoNum(event, 'totalUndiscountMoney', false);
+        this.clearNoNum(event, 'unRebateMoney', false);
+        this.calcPayMoney();
       }
     } else {
       wx.showToast({
@@ -89,66 +101,115 @@ Page({
         mask: false
       });
       this.setData({
-        totalUndiscountMoney: ''
+        unRebateMoney: ''
       });
     }
   },
-  totalUndiscountMoneyBlur: function (event) {
-    this.clearNoNum(event, 'totalUndiscountMoney', true);
+  //不可优惠输入框失去焦点
+  unRebateMoneyBlur: function (event) {
+    this.clearNoNum(event, 'unRebateMoney', true);
     this.calcPayMoney();
   },
+  chkUseScoreChange: function () {
+    var chkUseScore = !this.data.chkUseScore;
+    this.setData({
+      chkUseScore: false
+    });
+    this.calcPayMoney();
+  },
+  chkUseBalanceChange: function () {
+    var chkUseBalance = !this.data.chkUseBalance;
+    this.setData({
+      chkUseBalance: chkUseBalance
+    });
+    this.calcPayMoney();
+  },
+  //计算支付金额
   calcPayMoney: function () {
-    // this.data.rateDiscountMoney = parseFloat((this.data.totalMoney) * this.data.rateDiscount).toFixed(2);
-    // if (this.data.rateDiscountMoney < 0.01) {
-    //   this.data.rateDiscountMoney = 0;
-    // }
+    var rateDiscountMoney = parseFloat((this.data.totalMoney) * this.data.rateDiscount).toFixed(2);
+    this.setData({
+      rateDiscountMoney: rateDiscountMoney
+    })
+    if (this.data.rateDiscountMoney < 0.01) {
+      this.setData({
+        rateDiscountMoney: 0
+      })
+    }
 
-    // if (this.data.isCheckUndiscount == 1) {
-    //   this.data.rateDiscountMoney = parseFloat((this.data.totalMoney - this.data.unRebateMoney) * this.data.rateDiscount).toFixed(2);
-    // }
+    if (this.data.chkUnrebate) {
+      var rateDiscountMoney = parseFloat((this.data.totalMoney - this.data.unRebateMoney) * this.data.rateDiscount).toFixed(2);
+      this.setData({
+        rateDiscountMoney: 0
+      })
+    }
 
-    // var maxUseScore = parseInt((this.data.totalMoney - this.data.rateDiscountMoney) / this.data.score2Money);
-    // if (parseInt(maxUseScore) > parseInt(this.data.totalScore)) {
-    //   maxUseScore = this.data.totalScore;
-    // }
-    // this.data.maxUseScore = maxUseScore;
-    // this.data.scoreCanDisCount = parseFloat(this.data.maxUseScore * this.data.score2Money).toFixed(2);
+    var maxUseScore = parseInt((this.data.totalMoney - this.data.rateDiscountMoney) / this.data.score2Money);
+    if (parseInt(maxUseScore) > parseInt(this.data.totalScore)) {
+      maxUseScore = this.data.totalScore;
+    }
+    this.setData({
+      maxUseScore: maxUseScore
+    })
+    var scoreCanDisCount = parseFloat(this.data.maxUseScore * this.data.score2Money).toFixed(2);
+    this.setData({
+      scoreCanDisCount: scoreCanDisCount
+    })
 
-    // if (this.data.chkUseScore == 1) {
-    //   this.data.useScore = maxUseScore;
-    // } else {
-    //   this.data.useScore = 0;
-    // }
 
-    // this.data.realPayMoney = parseFloat(this.data.totalMoney - this.data.rateDiscountMoney - this.data.scoreDiscountMoney).toFixed(2);
-    // if (this.data.chkUseBalance == 1) {
-    //   if (this.data.realPayMoney >= 0) {
-    //     var maxUseBalance = parseFloat(this.data.totalMoney - this.data.rateDiscountMoney - this.data.scoreDiscountMoney).toFixed(2);
-    //     if (parseFloat(maxUseBalance) > parseFloat(this.data.balance)) {
-    //       maxUseBalance = this.data.balance;
-    //     }
-    //     this.data.useBalance = maxUseBalance;
-    //   }
-    // } else {
-    //   this.data.useBalance = 0;
-    // }
+    if (this.data.chkUseScore) {
+      this.setData({
+        useScore: maxUseScore
+      })
 
-    // this.data.scoreDiscountMoney = parseFloat(this.data.useScore * this.data.score2Money).toFixed(2);
-    // var realPayMoney = parseFloat((parseFloat(this.data.totalMoney).toFixed(2) * 100 - parseFloat(this.data.rateDiscountMoney).toFixed(2) * 100 - parseFloat(this.data.scoreDiscountMoney).toFixed(2) * 100 - parseFloat(this.data.useBalance).toFixed(2) * 100) / 100).toFixed(2);
-    // this.data.realPayMoney = realPayMoney;
-    // var payText = this.data.realPayMoney;
-    // if (isNaN(this.data.realPayMoney)) {
-    //   payText = 0;
-    // }
-    // if (realPayMoney > 0) {
-    //   this.setData({
-    //     balancePayText: false
-    //   })
-    // } else {
-    //   this.setData({
-    //     balancePayText: true
-    //   })
-    // }
+    } else {
+      this.setData({
+        useScore: 0
+      })
+    }
+
+    var realPayMoney = parseFloat(this.data.totalMoney - this.data.rateDiscountMoney - this.data.scoreDiscountMoney).toFixed(2);
+    this.setData({
+      realPayMoney: realPayMoney
+    })
+    if (this.data.chkUseBalance) {
+      if (this.data.realPayMoney >= 0) {
+        var maxUseBalance = parseFloat(this.data.totalMoney - this.data.rateDiscountMoney - this.data.scoreDiscountMoney).toFixed(2);
+        if (parseFloat(maxUseBalance) > parseFloat(this.data.balance)) {
+          maxUseBalance = this.data.balance;
+        }
+        this.setData({
+          useBalance: maxUseBalance
+        })
+      }
+    } else {
+      this.setData({
+        useBalance: 0
+      })
+    }
+
+    var scoreDiscountMoney = parseFloat(this.data.useScore * this.data.score2Money).toFixed(2);
+    this.setData({
+      scoreDiscountMoney: scoreDiscountMoney
+    })
+    var realPayMoney = parseFloat((parseFloat(this.data.totalMoney).toFixed(2) * 100 - parseFloat(this.data.rateDiscountMoney).toFixed(2) * 100 - parseFloat(this.data.scoreDiscountMoney).toFixed(2) * 100 - parseFloat(this.data.useBalance).toFixed(2) * 100) / 100).toFixed(2);
+    if (isNaN(realPayMoney) || realPayMoney<0) {
+      this.setData({
+        realPayMoney: 0
+      })
+    } else {
+      this.setData({
+        realPayMoney: realPayMoney
+      })
+    }
+    if (realPayMoney > 0) {
+      this.setData({
+        isBalancePay: false
+      })
+    } else {
+      this.setData({
+        isBalancePay: true
+      })
+    }
   },
   //清除多余的小数点
   clearNoNum: function (event, objNum, isFix) {
@@ -167,9 +228,9 @@ Page({
         totalMoney: money
       })
     }
-    if (objNum === 'totalUndiscountMoney') {
+    if (objNum === 'unRebateMoney') {
       this.setData({
-        totalUndiscountMoney: money
+        unRebateMoney: money
       })
     }
   }

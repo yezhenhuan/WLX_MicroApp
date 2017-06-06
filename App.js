@@ -30,7 +30,7 @@ App({
                 //获取userInfo并校验
                 wx.getUserInfo({
                   success: function (userInfoRes) {
-                    console.log('get userinfo', userInfoRes);
+                    // console.log('get userinfo', userInfoRes);
                     that.globalData.userInfo = userInfoRes.userInfo
                     //校验
                     wx.request({

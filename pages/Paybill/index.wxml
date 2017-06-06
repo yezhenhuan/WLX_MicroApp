@@ -13,25 +13,25 @@
       <input type="digit" placeholder="询问服务员后输入" confirm-type="done" value="{{totalMoney}}" placeholder-class="placeHolder" bindinput="totalMoneyChange" bindblur="totalMoneyBlur" />
     </view>
     <view class="">
-      <checkbox value="unDiscount" bindtap="checkUndiscount" />
+      <checkbox value="unDiscount" bindtap="checkUndiscount" checked="{{isCheckUndiscount}}"/>
       <text>不优惠金额</text>
-      <input wx:if="{{isCheckUndiscount}}" type="digit" value="{{totalUndiscountMoney}}" placeholder="询问服务员后输入" confirm-type="done" placeholder-class="placeHolder" class="marginTop10 listBoxWall" bindinput="totalUndiscountMoneyChange" bindblur="totalUndiscountMoneyBlur"
+      <input wx:if="{{chkUnrebate}}" type="digit" value="{{unRebateMoney}}" placeholder="询问服务员后输入" confirm-type="done" placeholder-class="placeHolder" class="marginTop10 listBoxWall" bindinput="unRebateMoneyChange" bindblur="unRebateMoneyBlur"
       />
     </view>
   </view>
   <view class="listBox padding15 marginBottom15">
     <image src="/assets/images/Icon/discount.png" class="icon"></image>
     <text class="marginLeft5 lineHeight21">会员等级优惠</text>
-    <text class="floatRight">￥0.00</text>
+    <text class="floatRight">￥{{rateDiscountMoney}}</text>
   </view>
   <view class="listBox marginBottom15">
     <view class="borderBtm padding15">
-      <checkbox value="chkUseScore" checked="true" />
-      <text>使用{{score}}咖啡豆抵现￥0.00元</text>
-      <text>￥{{useScore}}</text>
+      <checkbox value="chkUseScore" checked="true" bindtap="chkUseScoreChange" />
+      <text>使用{{maxUseScore}}咖啡豆抵现￥{{scoreCanDisCount}}元</text>
+      <text>￥{{scoreCanDisCount}}</text>
     </view>
     <view class="padding15">
-      <checkbox value="chkUseBalance" checked="true" />
+      <checkbox value="chkUseBalance" checked="true" bindtap="chkUseBalanceChange" />
       <text>使用余额支付(现金余额:{{balance}})元</text>
       <text>￥{{useBalance}}</text>
     </view>
@@ -39,10 +39,10 @@
   <view class="listBox padding15">
     <view class="marginBottom10">
       <text class="font18">实际付款(元)</text>
-      <text class="colorRed font18 floatRight">￥0.00</text>
+      <text class="colorRed font18 floatRight">￥{{realPayMoney}}</text>
     </view>
     <view class="">
-      <button size="default" type="primary" form-type="submit">{{balancePayText?"余额支付":"微信支付"}}</button>
+      <button size="default" type="primary" form-type="submit">{{isBalancePay?"余额支付":"微信支付"}}</button>
     </view>
 
   </view>
