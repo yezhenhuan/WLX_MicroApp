@@ -10,7 +10,7 @@ Page({
     rateDiscountMoney: 0,//等级折扣金额 *
 
     totalMoney: '',//消费金额 *
-    totalScore: 560,//总积分 *
+    totalScore: 1000,//总积分 *
     totalBalance: 168.00,//总余额 *
     totalUndiscountMoney: '',//不优惠金额 *
 
@@ -22,6 +22,7 @@ Page({
     isCheckUseScore: true,//是否选中使用积分
     isCheckUseBalance: true,//是否选中使用余额
 
+    rateDiscount:0.1,//等级折扣 *
     balancePayText: true
   },
   onLoad: function (options) {

@@ -1,7 +1,7 @@
 <view class="container">
   <view class="userinfo">
-    <image class="userinfo-avatar" src="/assets/images/logo.jpg" background-size="cover"></image>
-    <text class="userinfo-nickname">微领袖智慧门店</text>
+    <image class="userinfo-avatar" src="{{userAvatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userNickName}}</text>
   </view>
   <view class="logout" bindtap="logout">登出账号</view>
 </view>
