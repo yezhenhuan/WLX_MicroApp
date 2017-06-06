@@ -1,5 +1,3 @@
-var virData = require('../../data/shopListData.js')
-
 Page({
   data: {
     pickedShopIndex: 0,//选取的下拉框index
@@ -30,18 +28,30 @@ Page({
     isBalancePay: true
   },
   onLoad: function (options) {
+    var that = this;
     //发送请求，请求实际数据
-    this.setData({
-      shopList: virData.shopList
-    });
-    var pickedId = this.data.shopList[0].shopId
-    this.setData({
-      pickedShopId: pickedId
-    });
-    var pickedShopName = this.data.shopList[0].shopName;
-    this.setData({
-      pickedShopName: pickedShopName
-    });
+    wx.request({
+      url: 'https://microapp.love0371.com/Shop/GetOpenShopList',
+      method: 'GET',
+      success: function (res) {
+        if (res.data.status == "success") {
+          that.setData({
+            shopList: res.data.data
+          });
+          var pickedId = that.data.shopList[0].ShopID
+          that.setData({
+            pickedShopId: pickedId
+          });
+          var pickedShopName = that.data.shopList[0].ShopName;
+          that.setData({
+            pickedShopName: pickedShopName
+          });
+        }
+      },
+      fail: function (res) {
+
+      }
+    })
   },
   onShareAppMessage: function () {
 
@@ -51,14 +61,15 @@ Page({
     this.setData({
       pickedShopIndex: e.detail.value
     });
-    var pickedId = this.data.shopList[this.data.pickedShopIndex].shopId
+    var pickedId = this.data.shopList[this.data.pickedShopIndex].ShopID
     this.setData({
       pickedShopId: pickedId
     });
-    var pickedShopName = this.data.shopList[this.data.pickedShopIndex].shopName;
+    var pickedShopName = this.data.shopList[this.data.pickedShopIndex].ShopName;
     this.setData({
       pickedShopName: pickedShopName
     });
+    console.log(this.data.pickedShopId);
   },
   //消费金额输入框数值改变
   totalMoneyChange: function (event) {
@@ -79,20 +90,34 @@ Page({
     this.setData({
       chkUnrebate: isCheck
     });
+    if (!isCheck) {
+      this.setData({
+        unRebateMoney: ''
+      });
+    }
+    this.calcPayMoney();
   },
   //不可优惠输入框数值改变
   unRebateMoneyChange: function (event) {
+    this.clearNoNum(event, 'unRebateMoney', false);
     if (this.data.totalMoney != "") {
       if (this.data.unRebateMoney != "") {
         if (isNaN(this.data.unRebateMoney)) {
           this.data.unRebateMoney = '';
         }
         if (parseFloat(this.data.unRebateMoney) > parseFloat(this.data.totalMoney)) {
+          wx.showToast({
+            title: '不可优惠金额不能大于消费总额！',
+            mask: true
+          });
           this.setData({
             unRebateMoney: this.data.totalMoney
           });
+          this.calcPayMoney();
+          return {
+            value: this.data.totalMoney
+          }
         }
-        this.clearNoNum(event, 'unRebateMoney', false);
         this.calcPayMoney();
       }
     } else {
@@ -110,18 +135,31 @@ Page({
     this.clearNoNum(event, 'unRebateMoney', true);
     this.calcPayMoney();
   },
+  //使用积分勾选变化
   chkUseScoreChange: function () {
     var chkUseScore = !this.data.chkUseScore;
     this.setData({
-      chkUseScore: false
+      chkUseScore: chkUseScore
     });
+    if (!chkUseScore) {
+      this.setData({
+        useScore: 0,
+        scoreDiscountMoney: 0
+      });
+    }
     this.calcPayMoney();
   },
+  //使用余额勾选变化
   chkUseBalanceChange: function () {
     var chkUseBalance = !this.data.chkUseBalance;
     this.setData({
       chkUseBalance: chkUseBalance
     });
+    if (!chkUseBalance) {
+      this.setData({
+        useBalance: 0
+      });
+    }
     this.calcPayMoney();
   },
   //计算支付金额
@@ -139,7 +177,7 @@ Page({
     if (this.data.chkUnrebate) {
       var rateDiscountMoney = parseFloat((this.data.totalMoney - this.data.unRebateMoney) * this.data.rateDiscount).toFixed(2);
       this.setData({
-        rateDiscountMoney: 0
+        rateDiscountMoney: rateDiscountMoney
       })
     }
 
@@ -154,16 +192,16 @@ Page({
     this.setData({
       scoreCanDisCount: scoreCanDisCount
     })
-
-
     if (this.data.chkUseScore) {
+      var scoreDiscountMoney = parseFloat(this.data.useScore * this.data.score2Money).toFixed(2);
       this.setData({
-        useScore: maxUseScore
+        useScore: maxUseScore,
+        scoreDiscountMoney: scoreDiscountMoney
       })
-
     } else {
       this.setData({
-        useScore: 0
+        useScore: 0,
+        scoreDiscountMoney: 0
       })
     }
 
@@ -183,18 +221,13 @@ Page({
       }
     } else {
       this.setData({
-        useBalance: 0
+        useBalance: 0.00
       })
     }
-
-    var scoreDiscountMoney = parseFloat(this.data.useScore * this.data.score2Money).toFixed(2);
-    this.setData({
-      scoreDiscountMoney: scoreDiscountMoney
-    })
     var realPayMoney = parseFloat((parseFloat(this.data.totalMoney).toFixed(2) * 100 - parseFloat(this.data.rateDiscountMoney).toFixed(2) * 100 - parseFloat(this.data.scoreDiscountMoney).toFixed(2) * 100 - parseFloat(this.data.useBalance).toFixed(2) * 100) / 100).toFixed(2);
-    if (isNaN(realPayMoney) || realPayMoney<0) {
+    if (isNaN(realPayMoney) || realPayMoney < 0) {
       this.setData({
-        realPayMoney: 0
+        realPayMoney: 0.00
       })
     } else {
       this.setData({
@@ -232,6 +265,46 @@ Page({
       this.setData({
         unRebateMoney: money
       })
+    }
+  },
+  goPay: function () {
+    var that=this;
+    if (this.data.isBalancePay) {
+
+    } else {
+      wx.request({
+        url: 'https://microapp.love0371.com/NetPay/GetPayInfo',
+        method: 'POST',
+        data: {
+          totalMoney: that.data.totalMoney,
+          unRebateMoney: that.data.unRebateMoney,
+          rateDiscountMoney: that.data.rateDiscountMoney,
+          useBalance: that.data.useBalance,
+          useScore: that.data.useScore,
+          chkUnRebate: that.data.chkUnrebate,
+          chkUseScore: that.data.chkUseScore,
+          chkBalance: that.data.chkUseBalance,
+          shopId: that.data.pickedShopId
+        },
+        success: function (res) {
+          console.log(res);
+          // wx.requestPayment({
+          //   'timeStamp': '',
+          //   'nonceStr': '',
+          //   'package': '',
+          //   'signType': 'MD5',
+          //   'paySign': '',
+          //   'success': function (res) {
+          //   },
+          //   'fail': function (res) {
+          //   }
+          // });
+        },
+        fail: function () {
+
+        }
+      })
+     
     }
   }
 })

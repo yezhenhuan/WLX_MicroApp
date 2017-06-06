@@ -1,8 +1,14 @@
 .swiper-tab {
+  display: flex;
+  top:0;
+  left: 0;
   width: 100%;
   border-bottom: 2px solid #eee;
   text-align: center;
-  line-height: 80rpx;
+  height: 44px;
+  line-height: 44px;
+  
+  background: #fff;
 }
 
 .swiper-tab-item {
@@ -17,7 +23,7 @@
 }
 
 .swiper-box {
-  display: block;
+  display: flex;
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -50,4 +56,64 @@
 .productListBottom {
   height: 30px;
   padding: 20px 10px 10px 0;
+  margin-bottom: 20px;
 }
+
+.order-empty{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    top: 88rpx;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding-top: 203rpx;
+    background-color: #F2f2f2;
+}
+
+.order-empty-img{
+    width: 81rpx;
+    height: 96rpx;
+    margin-bottom: 31rpx;
+}
+.order-empty .text{
+    font-size:28rpx;
+    color:#999999;
+    text-align: center
+}
+
+
+.goods-img-container{
+    width: 720rpx;
+    margin-left: 30rpx;
+    border-top: 1rpx solid #eee;
+    border-bottom: 1rpx solid #eee;
+    padding: 30rpx 0;
+    display: flex;
+    align-items: center;
+}
+
+.listContent{
+  background: #fff;
+  margin: 10px 0;
+  padding: 0 10px;
+}
+
+.listBox{
+  background: #eee;
+}
+
+
+.scroll-content{
+  position: fixed;
+  bottom: 0px;
+  top: 44px;
+  width: 100%;
+  right: 0;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+

@@ -1,7 +1,7 @@
 <view class="container">
   <view class="listBox padding15 marginBottom15">
     <view class="marginBottom15">
-      <picker bindchange="bindShopChange" value="{{pickedShopIndex}}" range="{{shopList}}" range-key="shopName">
+      <picker bindchange="bindShopChange" value="{{pickedShopIndex}}" range="{{shopList}}" range-key="ShopName">
         <view class="picker">
           <text class="fontBold">本次支付给：</text>{{pickedShopName}}
           <image src="/assets/images/Icon/add.png" class="icon floatRight"></image>
@@ -28,11 +28,10 @@
     <view class="borderBtm padding15">
       <checkbox value="chkUseScore" checked="true" bindtap="chkUseScoreChange" />
       <text>使用{{maxUseScore}}咖啡豆抵现￥{{scoreCanDisCount}}元</text>
-      <text>￥{{scoreCanDisCount}}</text>
     </view>
     <view class="padding15">
       <checkbox value="chkUseBalance" checked="true" bindtap="chkUseBalanceChange" />
-      <text>使用余额支付(现金余额:{{balance}})元</text>
+      <text>使用余额支付(现金余额:{{balance}}元)</text>
       <text>￥{{useBalance}}</text>
     </view>
   </view>
@@ -42,7 +41,7 @@
       <text class="colorRed font18 floatRight">￥{{realPayMoney}}</text>
     </view>
     <view class="">
-      <button size="default" type="primary" form-type="submit">{{isBalancePay?"余额支付":"微信支付"}}</button>
+      <button size="default" type="primary" form-type="submit" bindtap="goPay">{{isBalancePay?"余额支付":"微信支付"}}</button>
     </view>
 
   </view>
