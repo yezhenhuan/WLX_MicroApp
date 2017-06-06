@@ -4,22 +4,23 @@
       <picker bindchange="bindShopChange" value="{{pickedShopIndex}}" range="{{shopList}}" range-key="shopName">
         <view class="picker">
           <text class="fontBold">本次支付给：</text>{{pickedShopName}}
-          <image src="/assets/images/icon/add.png" class="icon floatRight"></image>
-        </view>        
+          <image src="/assets/images/Icon/add.png" class="icon floatRight"></image>
+        </view>
       </picker>
     </view>
     <view class="listBoxWall marginBottom15">
       <text class="fontBold font16">消费总额(元):</text>
-      <input type="digit" placeholder="询问服务员后输入" confirm-type="done" placeholder-class="placeHolder" />
+      <input type="digit" placeholder="询问服务员后输入" confirm-type="done" value="{{totalMoney}}" placeholder-class="placeHolder" bindinput="totalMoneyChange" bindblur="totalMoneyBlur" />
     </view>
     <view class="">
       <checkbox value="unDiscount" bindtap="checkUndiscount" />
       <text>不优惠金额</text>
-      <input wx:if="{{isCheckUndiscount}}" type="digit" placeholder="询问服务员后输入" confirm-type="done" placeholder-class="placeHolder" class="marginTop10 listBoxWall" />
+      <input wx:if="{{isCheckUndiscount}}" type="digit" value="{{totalUndiscountMoney}}" placeholder="询问服务员后输入" confirm-type="done" placeholder-class="placeHolder" class="marginTop10 listBoxWall" bindinput="totalUndiscountMoneyChange" bindblur="totalUndiscountMoneyBlur"
+      />
     </view>
   </view>
   <view class="listBox padding15 marginBottom15">
-    <image src="/assets/images/icon/discount.png" class="icon"></image>
+    <image src="/assets/images/Icon/discount.png" class="icon"></image>
     <text class="marginLeft5 lineHeight21">会员等级优惠</text>
     <text class="floatRight">￥0.00</text>
   </view>
@@ -41,7 +42,7 @@
       <text class="colorRed font18 floatRight">￥0.00</text>
     </view>
     <view class="">
-      <button size="default" type="primary" form-type="submit">余额支付</button>
+      <button size="default" type="primary" form-type="submit">{{balancePayText?"余额支付":"微信支付"}}</button>
     </view>
 
   </view>
