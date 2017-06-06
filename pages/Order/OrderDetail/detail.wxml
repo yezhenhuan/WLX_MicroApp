@@ -1,21 +1,21 @@
 <view class="container">
   <view class="orderTitle font12 marginBottom15 bgColorF">
     <image src="/assets/images/Icon/orderIcon.png" class="icon"></image>
-    <text class="marginLeft5">订单号：20070524175758111506</text>
-    <text class="floatRight">已完成</text>
+    <text class="marginLeft5">订单号：{{orderInfo.OrderId}}</text>
+    <!-- <text class="floatRight">已完成</text> -->
   </view>
   <view class="orderQrCodeContainer bgColorF">
     <view class="orderQrCodeTop">
-      <view class="font16 txtAlignCenter marginBottom10">验单号：552552418248</view>
-      <image src="/assets/images/qrcode.png" class="center-block yandanqrCode"></image>
+      <view class="font16 txtAlignCenter marginBottom10">验单号：{{orderInfo.Checkcode}}</view>
+      <image src="/assets/images/qrcode.png" class="center-block yandanqrCode" data-url="/assets/images/qrcode.png" bindtap="saveImg"></image>
       <view class="font12 marginBottom15 color9">使用时向服务员出示此二维码</view>
     </view>
     <view class="orderQrCodeBottom bgColorF7 txtAlignLeft font12 color6 padding15  ">
-      <view class="marginBottom5">有效日期：2017.05.20 - 2018.05.20</view>
-      <view class="marginBottom5">可用时间：如下指定日期2016-02-07到2016-02-14不可使用10:30 - 22:30</view>
+      <view class="marginBottom5">有效日期：{{orderInfo.ExpireTime}}</view>
+      <view class="marginBottom5">可用时间：{{orderInfo.UseTime}}</view>
     </view>
   </view>
-  <view class="buyProContainer bgColorF">
+ <!--  <view class="buyProContainer bgColorF">
     <text class="font16 marginLeft15">已选购商品</text>
     <view class="bgColorF7">
       <view class="listBox marginTop10 borderNone">
@@ -67,5 +67,5 @@
       <text>实付款</text>
       <text class="floatRight colorRed">￥18.01</text>
     </view>
-  </view>
+  </view> -->
 </view>

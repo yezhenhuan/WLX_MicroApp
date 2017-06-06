@@ -4,41 +4,38 @@
   </view>
 </view>
 
-<view class="order-empty" hidden="{{orderList ? true : false}}">
-    <image src="/assets/images/Icon/order-empty.png" class="order-empty-img"></image>
-    <view class="text">暂无订单</view>
-</view>
-
+  <view class="order-empty" >
+      <image src="/assets/images/Icon/order-empty.png" class="order-empty-img"></image>
+      <view class="text">暂无订单</view>
+  </view>
 <!-- <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 80}}px" bindchange="bindChange"> -->
   <!-- <swiper-item wx:for-items="{{tabTitle}}" wx:key="{{index}}" data-index="{{index}}"> -->
-   <scroll-view class="scroll-content" scroll-y="{{true}}">
+   <scroll-view class="scroll-content" scroll-y="{{true}}" hidden="{{orderList ? fslse : true}}"  style="display:{{hideview ? none : inline}};">
     <view class="myOrderCon">
-      <view class="listBox" bindtap="showOrderDetail" data-orderId="{{orderList[index].OrderId}}">
+
         <view class="listContent" wx:for-items="{{orderList}}" wx:key="{{index}}" data-index="{{index}}">
+        <view class="listBox" bindtap="showOrderDetail" data-orderInfo="{{orderList[index]}}">
           <view class="productListTitle borderBtm">
             <image src="/assets/images/Icon/order_putong.png" class="icon"></image>
-            <text class="font12 marginLeft5">验单号 {{orderList[index].Checkcode}}</text>
-            <text class="floatRight color9 font12">{{orderList[index].viewType}}</text>
+            <text class="font12 marginLeft5 checkcode">订单编号：{{orderList[index].OrderId}}</text>
+
+            <text class="floatRight color9 font12">订单{{tabTitle[currentTab]}}</text>
           </view>
           <view class="productListContent" wx:for-items="{{orderList[index].OrderProducts}}" wx:key="{{index}}" data-index="{{index}}">
-            <image src="{{item.ProductImage}}" class="productListImg"></image>
+            <view class="productListImg"> 
+              <image src="{{item.ProductImage}}" ></image>
+            </view>
             <view class="productItemDesc">
               <view class="productItemTitle">
                 <text>{{item.ProductName}}</text>
               </view>
-              <view class="productItemTitle color9 font12">
-                <text>{{item.ProductType}}</text>
-                <text class="floatRight">x {{item.ProductCount}}</text>
+              <view class=" color9 font12">
+                <text class="product-count">数量: {{item.ProductCount}}</text>
               </view>
-              <view class="productItemTitle colorRed font12">
-                <text class="floatLeft">￥{{item.ProductPrice}}</text>
-                <text class="floatRight">合计:{{item.ProductPrice}}</text>
+              <view class="productItemTitle colorRed font12 product-price">
+                <text class="floatLeft ">￥{{item.ProductPrice}}</text>
               </view>
             </view>
-          </view>
-          <view class="productListBottom">
-            <text class="font12 color9">订单编号：{{orderList[index].OrderId}}</text>
-            <text class="font12 floatRight button">去消费</text>
           </view>
         </view>
       </view>
@@ -46,3 +43,6 @@
   </scroll-view>
   <!-- </swiper-item> -->
 <!-- </swiper> -->
+
+
+
