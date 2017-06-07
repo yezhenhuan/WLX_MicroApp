@@ -3,5 +3,11 @@
     <image class="userinfo-avatar" src="{{userAvatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userNickName}}</text>
   </view>
+  <view class="tools">
+    <view class="section" bindtap="">绑定手机号</view>
+  </view>
+
+
+
   <view class="logout" bindtap="logout">登出账号</view>
 </view>

@@ -32,25 +32,23 @@ App({
                   key: 'openId',
                   data: result.openId,
                 })
-
                 //获取userInfo并校验
                 wx.getUserInfo({
                   success: function (userInfoRes) {
-                    // console.log('get userinfo', userInfoRes);
                     that.globalData.userInfo = userInfoRes.userInfo
                     //校验
-                    wx.request({
-                      url: siteconfig.officialPath + '/WxOpen/CheckWxOpenSignature',
-                      method: 'POST',
-                      data: {
-                        sessionId: wx.getStorageSync('sessionId'),
-                        rawData: userInfoRes.rawData,
-                        signature: userInfoRes.signature
-                      },
-                      success: function (json) {
-                        // console.log(json.data);
-                      }
-                    });
+                    // wx.request({
+                    //   url: siteconfig.officialPath + '/WxOpen/CheckWxOpenSignature',
+                    //   method: 'POST',
+                    //   data: {
+                    //     sessionId: wx.getStorageSync('sessionId'),
+                    //     rawData: userInfoRes.rawData,
+                    //     signature: userInfoRes.signature
+                    //   },
+                    //   success: function (json) {
+                    //     // console.log(json.data);
+                    //   }
+                    // });
                   }
                 })
               } else {

@@ -6,6 +6,7 @@ Page({
     pickedShopId: 0,//选取的店铺ID  *
     pickedShopName: '',//选取的店铺名称
     shopList: null,//店铺列表 
+    isAnyShopOpen:true,//是否有店铺营业
 
     totalMoney: '',
     rateDiscount: '0.2',
@@ -37,17 +38,24 @@ Page({
       method: 'GET',
       success: function (res) {
         if (res.data.status == "success") {
-          that.setData({
-            shopList: res.data.data
-          });
-          var pickedId = that.data.shopList[0].ShopID
-          that.setData({
-            pickedShopId: pickedId
-          });
-          var pickedShopName = that.data.shopList[0].ShopName;
-          that.setData({
-            pickedShopName: pickedShopName
-          });
+          if(res.data.data){
+            that.setData({
+              shopList: res.data.data
+            });
+            var pickedId = that.data.shopList[0].ShopID
+            that.setData({
+              pickedShopId: pickedId
+            });
+            var pickedShopName = that.data.shopList[0].ShopName;
+            that.setData({
+              pickedShopName: pickedShopName
+            });
+          }else{
+            that.setData({
+              isAnyShopOpen:false,
+              pickedShopName:'暂无店铺营业'
+            })
+          }          
         }
       },
       fail: function (res) {
