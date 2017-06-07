@@ -1,9 +1,12 @@
+var siteconfig = require('../../config/config.js');
+
 Page({
   data: {
     pickedShopIndex: 0,//选取的下拉框index
     pickedShopId: 0,//选取的店铺ID  *
     pickedShopName: '',//选取的店铺名称
     shopList: null,//店铺列表 
+    isAnyShopOpen:true,//是否有店铺营业
 
     totalMoney: '',
     rateDiscount: '0.2',
@@ -31,21 +34,28 @@ Page({
     var that = this;
     //发送请求，请求实际数据
     wx.request({
-      url: 'https://microapp.love0371.com/Shop/GetOpenShopList',
+      url: siteconfig.officialPath + '/Shop/GetOpenShopList',
       method: 'GET',
       success: function (res) {
         if (res.data.status == "success") {
-          that.setData({
-            shopList: res.data.data
-          });
-          var pickedId = that.data.shopList[0].ShopID
-          that.setData({
-            pickedShopId: pickedId
-          });
-          var pickedShopName = that.data.shopList[0].ShopName;
-          that.setData({
-            pickedShopName: pickedShopName
-          });
+          if(res.data.data){
+            that.setData({
+              shopList: res.data.data
+            });
+            var pickedId = that.data.shopList[0].ShopID
+            that.setData({
+              pickedShopId: pickedId
+            });
+            var pickedShopName = that.data.shopList[0].ShopName;
+            that.setData({
+              pickedShopName: pickedShopName
+            });
+          }else{
+            that.setData({
+              isAnyShopOpen:false,
+              pickedShopName:'暂无店铺营业'
+            })
+          }          
         }
       },
       fail: function (res) {
@@ -268,43 +278,65 @@ Page({
     }
   },
   goPay: function () {
-    var that=this;
+    var that = this;
     if (this.data.isBalancePay) {
 
     } else {
+      var chkUnrebate = that.data.chkUnrebate ? '1' : '0';
+      var chkUseScore = that.data.chkUseScore ? '1' : '0';
+      var chkUseBalance = that.data.chkUseBalance ? '1' : '0';
+      var openId = '';
+      try {
+        openId = wx.getStorageSync('openId')
+      } catch (e) {
+        // Do something when catch error
+      }
+
       wx.request({
-        url: 'https://microapp.love0371.com/NetPay/GetPayInfo',
+        url: siteconfig.officialPath + '/GetPayInfo/Index',
+        header: {
+          'content-type': 'application/json'
+        },
         method: 'POST',
         data: {
-          totalMoney: that.data.totalMoney,
-          unRebateMoney: that.data.unRebateMoney,
-          rateDiscountMoney: that.data.rateDiscountMoney,
-          useBalance: that.data.useBalance,
-          useScore: that.data.useScore,
-          chkUnRebate: that.data.chkUnrebate,
-          chkUseScore: that.data.chkUseScore,
-          chkBalance: that.data.chkUseBalance,
-          shopId: that.data.pickedShopId
+          // txtTotalMoney: that.data.totalMoney,
+          // txtUnRebateMoney: that.data.unRebateMoney,
+          // txtRateDiscountMoney: that.data.rateDiscountMoney,
+          // txtUseBalance: that.data.useBalance,
+          // txtUseScore: that.data.useScore,
+          // chkUnRebate: chkUnrebate,
+          // chkUseScore: chkUseScore,
+          // chkBalance: chkUseBalance,
+          // pickedShopId: that.data.pickedShopId
+          openId: openId
         },
         success: function (res) {
-          console.log(res);
-          // wx.requestPayment({
-          //   'timeStamp': '',
-          //   'nonceStr': '',
-          //   'package': '',
-          //   'signType': 'MD5',
-          //   'paySign': '',
-          //   'success': function (res) {
-          //   },
-          //   'fail': function (res) {
-          //   }
-          // });
+          var data = res.data.data;
+          wx.requestPayment({
+            'timeStamp': data.timeStamp,
+            'nonceStr': data.nonceStr,
+            'package': data.package,
+            'signType': 'MD5',
+            'paySign': data.paySign,
+            'success': function (res) {
+              wx.showToast({
+                title: '支付成功',
+              })
+            },
+            'fail': function (res) {
+              wx.showToast({
+                title: '支付失败',
+              })
+            }
+          });
         },
         fail: function () {
-
+          wx.showToast({
+            title: '请求支付失败！',
+          })
         }
       })
-     
+
     }
   }
 })

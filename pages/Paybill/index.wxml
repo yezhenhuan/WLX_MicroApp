@@ -1,12 +1,13 @@
 <view class="container">
   <view class="listBox padding15 marginBottom15">
     <view class="marginBottom15">
-      <picker bindchange="bindShopChange" value="{{pickedShopIndex}}" range="{{shopList}}" range-key="ShopName">
+      <picker wx:if="{{isAnyShopOpen}}" bindchange="bindShopChange" value="{{pickedShopIndex}}" range="{{shopList}}" range-key="ShopName">
         <view class="picker">
           <text class="fontBold">本次支付给：</text>{{pickedShopName}}
           <image src="/assets/images/Icon/add.png" class="icon floatRight"></image>
         </view>
       </picker>
+      <text wx:else class="colorRed txtAlignCenter">{{pickedShopName}}</text>
     </view>
     <view class="listBoxWall marginBottom15">
       <text class="fontBold font16">消费总额(元):</text>
@@ -41,7 +42,8 @@
       <text class="colorRed font18 floatRight">￥{{realPayMoney}}</text>
     </view>
     <view class="">
-      <button size="default" type="primary" form-type="submit" bindtap="goPay">{{isBalancePay?"余额支付":"微信支付"}}</button>
+      <button size="default" wx:if="{{isAnyShopOpen}}" type="primary" form-type="submit" bindtap="goPay">{{isBalancePay?"余额支付":"微信支付"}}</button>
+      <button size="default" wx:else type="default" disabled="true" form-type="submit" bindtap="goPay">{{isBalancePay?"余额支付":"微信支付"}}</button>
     </view>
 
   </view>
