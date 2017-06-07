@@ -3,7 +3,7 @@
 }
 
 .orderTitle {
-  padding: 15px 15px;
+  padding: 14px 15px;
   display: block;
   border-bottom: solid 1px #eee;
 }
@@ -11,13 +11,14 @@
 .orderQrCodeContainer {
   text-align: center;
   padding: 15px 15px;
+  background: #fff;
 }
 
 .yandanqrCode {
-  margin-top: 15px;
+  margin-top: 25px;
   margin-bottom: 15px;
-  width: 240rpx;
-  height: 240rpx;
+  width: 280rpx;
+  height: 280rpx;
 }
 
 .buyProContainer {
@@ -56,4 +57,71 @@
 
 .billListItem {
   margin: 0 0 10px;
+}
+
+.normal-text{
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.disable-text{
+  text-decoration: line-through;
+}
+
+.time-label{
+  position: relative;
+}
+
+.time-label-left{
+  color: #000;
+  font-weight: 500;
+  line-height: 30px;
+  padding-left: 8px;
+}
+
+.time-label::before{
+  content: '';
+  width: 6rpx;
+  height: 16px;
+  border-right: 1rpx;
+  background-color: #4ABDCC;
+  position: absolute;
+  left: 0;
+  top: 6px;
+}
+
+.time-label-right{
+  padding-left: 8px;
+  line-height: 20px;
+}
+
+.orderQrCodeBottom{
+  margin-top: 12px;
+  background: #fff;
+}
+
+.checkcode{
+  display: block;
+  height: 38px;
+  line-height: 38px;
+  margin: auto;
+  padding: 0 16px;
+  width:fit-content;
+  width:-webkit-fit-content;
+  width:-moz-fit-content;
+  background: #F7F7F7;
+  border-radius: 4px;
+  overflow:hidde;
+}
+.orderQrCodeTop{
+  background: #fff;
+}
+
+.status-label{
+  color: #CC4053;
+}
+
+.tiplabel{
+  padding-top: 20px;
 }
