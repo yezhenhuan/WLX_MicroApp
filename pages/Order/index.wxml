@@ -6,7 +6,7 @@
 
 <view class="order-empty" >
     <image src="/assets/images/Icon/order-empty.png" class="order-empty-img"></image>
-    <view class="text">暂无订单</view>
+    <view class="text">您还没有相关订单</view>
 </view>
 
 <scroll-view class="scroll-content" scroll-y="{{true}}" hidden="{{orderList ? false : true}}"  style="display:{{hideview ? none : inline}};">

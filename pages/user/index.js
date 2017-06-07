@@ -15,5 +15,11 @@ Page({
   },
   onShareAppMessage: function () {
 
+  },
+
+  bindMobile: function (event){
+    wx.navigateTo({
+      url: "/pages/Phone/index"
+    })
   }
 })

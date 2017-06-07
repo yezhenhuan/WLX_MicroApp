@@ -1,3 +1,9 @@
+Page {
+  background: #fff;
+  font-family: Microsoft Yahei;
+  font-size: 14px;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -19,29 +25,44 @@
 }
 
 .tools{
-  margin: 10px 0;
+  display: flex;
+  background: #1AAE18;
+  border-radius: 10rpx;
+  height: 88rpx;
+  margin: 60px 20px 0;
+  align-items:center;
 }
 .section {
-  line-height: 1.41176471;
-  font-size: 16px;
-  padding: 10px;
-  background: #FFF;
-  text-align: left;
-  border-top: 1rpx solid #d9d9d9;
+  flex: 1;
+  font-size: 34rpx;
+  /*padding-left: 30px;*/
+  text-align: center;
+  color: #fff;
 }
 
+.arrow{
+  width: 18px;
+  height: 18px;
+  padding-right: 10px;
+}
 
+.container{
+  background: #fff;
+}
 
 .logout {
   position: relative;
-  margin-top: 1em;
-  font-size: 14px;
-  margin-top: 140px;
-  background: #fff;
+  font-size: 16px;
+  margin: 30px 20px 0;
+  background: #F8F8F8;
   text-align: center;
   color: #CC4053;
-  height: 88rpx;
-  line-height: 88rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-radius: 10rpx;
+  border-color: #DFDFDF;
+  border-width: 2rpx;
+  border-style: solid;
   /*border-bottom: 1rpx solid #d9d9d9;*/
   /*border-top: 1rpx solid #d9d9d9;*/
 }
