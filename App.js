@@ -32,13 +32,7 @@ App({
               var res = response.data;
               console.log("返回的数据为：" + res);
               if (res.success) {
-                wx.setStorageSync('AccessToken', res.accessToken);
-                wx.getUserInfo({
-                  success: function (userInfoRes) {
-                    that.globalData.userInfo = userInfoRes.userInfo
-                    //更新到数据库中
-                  }
-                })
+                wx.setStorageSync('AccessToken', res.accessToken);                
               } else {
                 wx.showToast({
                   title: '与服务器通信过程发生错误，请稍后再试！',

@@ -14,10 +14,18 @@ Page({
     })
 
   },
-
   // 获取个人信息
   getUserInfo: function () {
-
+    wx.getUserInfo({
+      success: function (userInfoRes) {
+        var userInfo = userInfoRes.userInfo
+        this.setData({
+          userAvatarUrl: userInfo.avatarUrl,
+          userNickName: userInfo.nickName
+        })
+        //todo  更新到数据库中
+      }
+    })
   },
 
   // 进入绑定手机号界面
