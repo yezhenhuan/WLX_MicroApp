@@ -48,8 +48,7 @@
 
 .listBox {
   background: #fff;
-  border-top: solid 1px #eee;
-  border-bottom: solid 1px #eee;
+  padding-bottom: 4px;
 }
 
 .displayRow {
@@ -124,13 +123,11 @@
 }
 
 .borderBtm {
-  border-bottom: solid 1px #eee;
+  /*border-bottom: solid 1px #eee;*/
 }
 
 .listBox {
   background: #fff;
-  border-top: solid 1px #eee;
-  border-bottom: solid 1px #eee;
 }
 
 .txtAlignRight {

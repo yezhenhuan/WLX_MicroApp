@@ -37,7 +37,7 @@
   display: flex;
   flex-direction: row;
   padding: 17px 15px 17px 0;
-  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
 }
 
 .productListImg image{
@@ -109,7 +109,7 @@
   margin-bottom: 20px;
 }
 
-.swiper{
+/*.swiper{
   display: block; 
   width: 100%; 
   overflow: hidden;
@@ -117,7 +117,7 @@
   border: 0;
 
   background-color: #eaeaea;
-}
+}*/
 
 
 .scroll-content{

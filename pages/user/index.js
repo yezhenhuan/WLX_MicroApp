@@ -4,9 +4,10 @@ Page({
   data: {
     userAvatarUrl: '',
     userNickName: '',
-    bindMobile: false
+    bindMobile: true
   },
   onLoad: function (options) {
+
     this.data.userAvatarUrl = app.globalData.userInfo.avatarUrl;
     this.setData({
       userAvatarUrl: app.globalData.userInfo.avatarUrl,

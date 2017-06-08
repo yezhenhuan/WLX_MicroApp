@@ -1,5 +1,6 @@
 // var vrData = require('../../data/orderListData.js');
 var siteconfig = require('../../config/config.js');
+
 var app = getApp()
 Page({
   data: {
@@ -78,27 +79,21 @@ Page({
       wx.hideLoading()
     },2000)
 
-    wx.request({
-      url: siteconfig.officialPath + '/order/getuserorderlist',
-      data: {"orderstate": type,"startnum": "0","requestnum": "20"},
-      method: 'GET',
-      header: {'Accept': 'application/json'},
-      success: function(res){
+    var url = app.ApiUrl.getUserOrderList;
+    var data = {"orderstate": type,"startnum": "0","requestnum": "20"};
+    app.WxService.sendRrquest(url, 'GET', data, {})
+      .then(function (response) {
         wx.hideLoading()
-        var orderList = res.data.data.Datalist;
+        var orderList = response.data.data.Datalist;
         if (!orderList.length) {
           that.setData({
             orderList: null
           })
         }else {
           that.setData({
-            orderList: res.data.data.Datalist
+            orderList: response.data.data.Datalist
           })
         }
-      },
-      fail: function (res) {
-
-      }
-    })
+      });
   }
 })

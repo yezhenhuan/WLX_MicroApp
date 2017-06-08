@@ -4,7 +4,7 @@
   border-radius: 4px;
   padding-left: 20px;
   margin-top: 20px;
-  height: 88rpx;
+  height: 46px;
   border-bottom: solid 1px #eee;
 }
 
@@ -27,17 +27,17 @@
   padding-left: 20px;
   background: #fff;
   border-radius: 4px;
-  height: 88rpx;
+  height: 46px;
 }
 
 .enter{
   margin: 40px 20px 0;
   background: #1AAD19;
   color: #fff;
-  height: 88rpx;
+  height: 46px;
 }
 
 .inputfield{
-  height: 88rpx;
-  line-height: 88rpx;
+  height: 46px;
+  line-height: 46px;
 }
