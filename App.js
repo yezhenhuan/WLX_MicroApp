@@ -1,4 +1,5 @@
 var siteconfig = require('/config/config.js');
+var apiUrl = require('/config/apiUrl.js');
 var request = require('helpers/requestService.js')
 App({
   onLaunch: function (options) {
@@ -36,19 +37,6 @@ App({
                 wx.getUserInfo({
                   success: function (userInfoRes) {
                     that.globalData.userInfo = userInfoRes.userInfo
-                    //校验
-                    // wx.request({
-                    //   url: siteconfig.officialPath + '/WxOpen/CheckWxOpenSignature',
-                    //   method: 'POST',
-                    //   data: {
-                    //     sessionId: wx.getStorageSync('sessionId'),
-                    //     rawData: userInfoRes.rawData,
-                    //     signature: userInfoRes.signature
-                    //   },
-                    //   success: function (json) {
-                    //     // console.log(json.data);
-                    //   }
-                    // });
                   }
                 })
               } else {
@@ -59,5 +47,8 @@ App({
         }
       })
     }
-  }
+  },
+  SiteDomain: siteconfig.officialPath,
+  ApiUrl: apiUrl,
+  WxService: request
 })

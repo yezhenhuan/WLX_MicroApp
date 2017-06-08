@@ -1,5 +1,4 @@
-var siteconfig = require('../../config/config.js');
-var request = require('../../helpers/requestService.js')
+var app=getApp();
 
 Page({
   data: {
@@ -34,8 +33,8 @@ Page({
   onLoad: function (options) {
     var that = this;
     //发送请求，请求店铺数据
-    var url = '/Shop/GetOpenShopList';
-    request.sendRrquest(url, 'GET', {}, {})
+    var url = app.ApiUrl.getShopList;
+    app.WxService.sendRrquest(url, 'GET', {}, {})
       .then(function (response) {
         that.setData({
           shopList: response.data.data
