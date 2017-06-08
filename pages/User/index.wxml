@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="userinfo">
+  	<view class="userinfo-avatar"><image  src="{{userAvatarUrl ? userAvatarUrl :'/assets/images/Icon/defaultHeadImage.png'}}" background-size="cover"></image></view>
+    <text class="userinfo-nickname">{{userNickName}}</text>
+
+    <view class="user-bottom">
+    	<view class="user-left">
+    		<view><text class="top-text">9889</text></view>
+    		<view><text class="bottom-text">积分</text></view>
+    	</view>
+    	<view class="user-middle">
+    	</view>
+    	<view class="user-right">
+    		<view><text class="top-text">¥ 9889</text></view>
+    		<view><text class="bottom-text">余额</text></view>
+    	</view>
+    </view>
+  </view>
+
+  <view class="tools" bindtap="bindMobileShow" wx:if="{{bindMobile}}">
+    <text class="section">绑定手机号</text>
+    <!--<image class="arrow" src="/assets/images/Icon/CaretRight.png"></image>-->
+  </view>
+  <view class="logout" bindtap="logout" style="margin-top: {{bindMobile ? '12px' : '60px'}};">登出账号</view>
+</view>
