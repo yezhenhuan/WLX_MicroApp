@@ -7,7 +7,6 @@ Page({
     bindMobile: true
   },
   onLoad: function (options) {
-
     this.data.userAvatarUrl = app.globalData.userInfo.avatarUrl;
     this.setData({
       userAvatarUrl: app.globalData.userInfo.avatarUrl,

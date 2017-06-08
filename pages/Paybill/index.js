@@ -1,4 +1,3 @@
-
 var siteconfig = require('../../config/config.js');
 var app=getApp();
 
