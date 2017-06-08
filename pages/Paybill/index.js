@@ -1,4 +1,5 @@
 var siteconfig = require('../../config/config.js');
+var request = require('../../helpers/requestService.js')
 
 Page({
   data: {
@@ -6,7 +7,7 @@ Page({
     pickedShopId: 0,//选取的店铺ID  *
     pickedShopName: '',//选取的店铺名称
     shopList: null,//店铺列表 
-    isAnyShopOpen:true,//是否有店铺营业
+    isAnyShopOpen: true,//是否有店铺营业
 
     totalMoney: '',
     rateDiscount: '0.2',
@@ -32,36 +33,27 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
-    //发送请求，请求实际数据
-    wx.request({
-      url: siteconfig.officialPath + '/Shop/GetOpenShopList',
-      method: 'GET',
-      success: function (res) {
-        if (res.data.status == "success") {
-          if(res.data.data){
-            that.setData({
-              shopList: res.data.data
-            });
-            var pickedId = that.data.shopList[0].ShopID
-            that.setData({
-              pickedShopId: pickedId
-            });
-            var pickedShopName = that.data.shopList[0].ShopName;
-            that.setData({
-              pickedShopName: pickedShopName
-            });
-          }else{
-            that.setData({
-              isAnyShopOpen:false,
-              pickedShopName:'暂无店铺营业'
-            })
-          }          
-        }
-      },
-      fail: function (res) {
-
-      }
-    })
+    //发送请求，请求店铺数据
+    var url = '/Shop/GetOpenShopList';
+    request.sendRrquest(url, 'GET', {}, {})
+      .then(function (response) {
+        that.setData({
+          shopList: response.data.data
+        });
+        var pickedId = that.data.shopList[0].ShopID
+        that.setData({
+          pickedShopId: pickedId
+        });
+        var pickedShopName = that.data.shopList[0].ShopName;
+        that.setData({
+          pickedShopName: pickedShopName
+        });
+      }, function () {
+        that.setData({
+          isAnyShopOpen: false,
+          pickedShopName: '暂无店铺营业'
+        })
+      });
   },
   onShareAppMessage: function () {
 

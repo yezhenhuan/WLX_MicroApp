@@ -1,5 +1,5 @@
 var siteconfig = require('/config/config.js');
-
+var request = require('helpers/requestService.js')
 App({
   onLaunch: function (options) {
     this.getUserInfo('');
