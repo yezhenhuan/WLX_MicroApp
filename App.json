@@ -4,8 +4,8 @@
     "pages/Start/Index",
     "pages/Order/index",
     "pages/Order/OrderDetail/detail",
-    "pages/Phone/index"
-    
+    "pages/Phone/index",
+    "pages/User/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#2C2C30",
@@ -46,5 +46,3 @@
   },
   "debug": true
 }
-
-
