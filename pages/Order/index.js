@@ -1,3 +1,5 @@
+// var vrData = require('../../data/orderListData.js');
+var siteconfig = require('../../config/config.js');
 var app = getApp()
 Page({
   data: {
@@ -8,7 +10,6 @@ Page({
     orderType: ["0", "1", "9", "10", "11"],
     orderList:null,
     oneList: null,
-
   },
 
   onLoad: function () {
@@ -26,29 +27,29 @@ Page({
     var selectTabIndex = that.data.currentTab;
     var orderType = that.data.orderType
     that.getOrderList(orderType[selectTabIndex]);
-    
   },
 
+  // 左右滑动
   bindChange: function (e) {
     var that = this;
     that.setData({ currentTab: e.detail.current });
   },
 
+  // 切换顶部tab
   swichNav: function (e) {
     var that = this;
-    if (this.data.currentTab === e.target.dataset.current) {
+    if (that.data.currentTab === e.target.dataset.current) {
       return;
     } 
-     that.setData({
-       currentTab: e.target.dataset.current
-      })
-
-   
+   that.setData({
+     currentTab: e.target.dataset.current
+    })
     var selectTabIndex = that.data.currentTab;
     var orderType = that.data.orderType;
     that.getOrderList(orderType[selectTabIndex]);
   },
 
+  // 进入订单详情页
   showOrderDetail: function (event){
     if (!this.data.currentTab){
       return;
@@ -59,17 +60,26 @@ Page({
     })
   },
 
+  // 获取订单数据
   getOrderList: function (type){
     var that = this;
+
+    // 模拟数据
+    // var list = vrData.orderList;
+    // console.log(vrData);
+    // that.setData({
+    //   orderList: list
+    // })
+
     wx.showLoading({
     title: '加载中',
     })
-
     setTimeout(function(){
       wx.hideLoading()
     },2000)
+
     wx.request({
-      url: 'https://microapp.love0371.com/order/getuserorderlist',
+      url: siteconfig.officialPath + '/order/getuserorderlist',
       data: {"orderstate": type,"startnum": "0","requestnum": "20"},
       method: 'GET',
       header: {'Accept': 'application/json'},
@@ -85,6 +95,9 @@ Page({
             orderList: res.data.data.Datalist
           })
         }
+      },
+      fail: function (res) {
+
       }
     })
   }

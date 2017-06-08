@@ -17,10 +17,9 @@
     </view>
   </view>
 
-  <view class="tools" bindtap="bindMobile">
+  <view class="tools" bindtap="bindMobileShow" wx:if="{{bindMobile}}">
     <text class="section">绑定手机号</text>
     <!--<image class="arrow" src="/assets/images/Icon/CaretRight.png"></image>-->
   </view>
-
-  <view class="logout" bindtap="logout">登出账号</view>
+  <view class="logout" bindtap="logout" style="margin-top: {{bindMobile ? '12px' : '60px'}};">登出账号</view>
 </view>

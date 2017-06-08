@@ -6,5 +6,5 @@
   <view class="code">
     <input class="inputfield"  bindinput="verifyCode" maxlength="8" focus="{{true}}" placeholder="请输入验证码" />
   </view>
-    <button class="enter" disabled="{{btnEnable}}" type="primary" form-type="submit" bindtap="bind">确认</button>
+    <button class="enter" disabled="{{btnEnable}}" type="primary" form-type="submit" bindtap="bindMobile">确认</button>
 </view>

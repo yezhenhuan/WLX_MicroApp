@@ -1,4 +1,5 @@
 var siteconfig = require('../../config/config.js');
+var vrData = require('../../data/orderListData.js');
 
 Page({
   data: {
