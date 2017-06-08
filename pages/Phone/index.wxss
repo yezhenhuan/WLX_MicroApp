@@ -1,0 +1,43 @@
+.phone{
+  display: flex;
+  background: #fff;
+  border-radius: 4px;
+  padding-left: 20px;
+  margin-top: 20px;
+  height: 88rpx;
+  border-bottom: solid 1px #eee;
+}
+
+.inputfield{
+  flex: 1;
+}
+
+.codebutton{
+  width: 110px;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 16px;
+  margin-top: 5px;
+  margin-right: 10px;
+  color: #00C302;
+}
+
+.code{
+  display: flex;
+  padding-left: 20px;
+  background: #fff;
+  border-radius: 4px;
+  height: 88rpx;
+}
+
+.enter{
+  margin: 40px 20px 0;
+  background: #1AAD19;
+  color: #fff;
+  height: 88rpx;
+}
+
+.inputfield{
+  height: 88rpx;
+  line-height: 88rpx;
+}

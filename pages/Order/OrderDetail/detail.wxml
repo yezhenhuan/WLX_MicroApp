@@ -1,21 +1,111 @@
 <view class="container">
-  <view class="orderTitle font12 marginBottom15 bgColorF">
-    <image src="/assets/images/Icon/orderIcon.png" class="icon"></image>
-    <text class="marginLeft5">订单号：20070524175758111506</text>
-    <text class="floatRight">已完成</text>
-  </view>
-  <view class="orderQrCodeContainer bgColorF">
-    <view class="orderQrCodeTop">
-      <view class="font16 txtAlignCenter marginBottom10">验单号：552552418248</view>
-      <image src="/assets/images/qrcode.png" class="center-block yandanqrCode"></image>
-      <view class="font12 marginBottom15 color9">使用时向服务员出示此二维码</view>
+  <view  class="orderInfoContainer" hidden="{{orderInfoHidden}}"  style="display:{{hideview ? none : inline}};">
+    <view class="orderTitle font12 marginBottom15 bgColorF orderContent">
+      <text class="marginLeft5">订单号：{{orderInfo.OrderId}}</text>
+      <text class="floatRight status-label" hidden="{{orderInfo.OrderState == 1 ? true : false}}">已消费</text>
     </view>
+
+    <view class="orderQrCodeContainer bgColorF">
+      <view class="checkcode">
+        <text>验单号：</text><text  class="{{orderInfo.OrderState==1 ? 'normal-text':'disable-text'}}">{{orderInfo.Checkcode ? orderInfo.Checkcode : '8888 8888 8888'}}</text>
+      </view>
+      <view class="font16 txtAlignCenter marginBottom10" >
+        <image src="{{orderInfo.OrderState == 1 ? '/assets/images/qrcode.png' : '/assets/images/diable-qr.png' }}" class="center-block yandanqrCode" data-url="{{orderInfo.OrderState == 1 ? '/assets/images/qrcode.png ' : '/assets/images/diable-qr.png' }}" bindtap="saveImg"></image>
+        <view class="font12 marginBottom15 color9 tiplabel" >{{orderInfo.OrderState == 1 ? '使用时向服务员出示此二维码' : '' }}</view>
+      </view>
+    </view>
+
     <view class="orderQrCodeBottom bgColorF7 txtAlignLeft font12 color6 padding15  ">
-      <view class="marginBottom5">有效日期：2017.05.20 - 2018.05.20</view>
-      <view class="marginBottom5">可用时间：如下指定日期2016-02-07到2016-02-14不可使用10:30 - 22:30</view>
+      <view class="time-label">
+        <view class="time-label-left">购买日期</view>
+        <!-- <view class="time-label-right">{{orderInfo.CreateTime}}</view> -->
+        <view class="time-label-right">2017-06-02 12:23:33</view>
+      </view>
+      <view class="time-label">
+        <view class="time-label-left">有效日期</view>
+        <view class="time-label-right">{{orderInfo.ExpireTime}}</view>
+        <view class="time-label-right">2017-11-02 24:00:00</view>
+      </view>
+      <view class="time-label">
+        <view class="time-label-left">使用须知</view>
+        <!-- <view class="time-label-right">    {{orderInfo.UseTime}}</view> -->
+        <view class="time-label-right">需到店消费</view>
+      </view>
     </view>
   </view>
-  <view class="buyProContainer bgColorF">
+
+
+
+  <view class="back-container" hidden="{{!orderInfoHidden}}"  style="display:{{hideview ? none : inline}};">
+      <view class="back-title" wx:for="{{['退款金额', '退回账户', '到账时间']}}">
+        <text>{{item}}:</text > 
+        <text class="back-decr{{index==0 ? '0' : ''}}">{{index == 0 ? orderInfo.ProductPrice : vrDesc[index]}}</text>  
+      </view>
+
+      <view class="back-bottom">
+        <view class="sec-wrap">
+          <view class="details-info">
+              <view class="line-box"></view>
+              <view class="a-row" wx:for-items="{{demo1}}" wx:key="{{index}}">
+                  <view class="dot">
+                      <view class="active-dot" hidden="{{index== 0 ? false : true}}"><view class="yuan-red"></view></view>
+                      <view class="default-dot" hidden="{{index== 0 ? true : false}}"></view>
+                  </view>
+                  <view class="info">
+                      <view class="date-box">{{demo1[index]}}</view>
+                      <view class="text">{{demo2[index]}}</view>
+                  </view>
+              </view>
+        </view>
+      </view>
+   </view>
+
+
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<!--   <view>
+    <button size="default" type="primary" form-type="submit" bindtap="goPay">保存到相册</button>
+  </view> -->
+ <!--  <view class="buyProContainer bgColorF">
     <text class="font16 marginLeft15">已选购商品</text>
     <view class="bgColorF7">
       <view class="listBox marginTop10 borderNone">
@@ -67,5 +157,5 @@
       <text>实付款</text>
       <text class="floatRight colorRed">￥18.01</text>
     </view>
-  </view>
+  </view> -->
 </view>

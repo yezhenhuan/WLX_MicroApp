@@ -4,20 +4,21 @@
     "pages/Start/Index",
     "pages/Order/index",
     "pages/Order/OrderDetail/detail",
-    "pages/User/index"
+    "pages/Phone/index"
+    
   ],
   "window": {
-    "navigationBarBackgroundColor": "#000",
+    "navigationBarBackgroundColor": "#2C2C30",
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "微领袖咖啡厅",
     "backgroundColor": "#f8f8f8",
     "backgroundTextStyle": "dark"
   },
   "tabBar": {
-    "color": "#999999",
-    "selectedColor": "#000",
+    "color": "#7F8389",
+    "selectedColor": "#CC4053",
     "borderStyle": "white",
-    "backgroundColor": "#fff",
+    "backgroundColor": "#FCFCFC",
     "list": [
       {
         "pagePath": "pages/Paybill/index",
@@ -45,3 +46,5 @@
   },
   "debug": true
 }
+
+

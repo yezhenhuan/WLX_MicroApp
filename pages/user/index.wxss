@@ -1,12 +1,18 @@
+Page {
+  background: #fff;
+  font-family: Microsoft Yahei;
+  font-size: 14px;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;
-  padding: 50rpx 0;
+  padding: 50rpx 10rpx 0;
   align-items: center;
-  background: #f4504d;
+  background: #CC4053;
 }
 
-.userinfo-avatar {
+.userinfo-avatar image{
   width: 128rpx;
   height: 128rpx;
   margin: 20rpx;
@@ -14,31 +20,99 @@
 }
 
 .userinfo-nickname {
+  font-size: 32rpx;
   color: #fff;
 }
 
 .tools{
-  margin: 10px 0;
+  display: flex;
+  background: #1AAE18;
+  border-radius: 10rpx;
+  height: 88rpx;
+  margin: 60px 20px 0;
+  align-items:center;
 }
 .section {
-  line-height: 1.41176471;
-  font-size: 16px;
-  padding: 10px;
-  background: #FFF;
-  text-align: left;
-  border-top: 1rpx solid #d9d9d9;
+  flex: 1;
+  font-size: 34rpx;
+  /*padding-left: 30px;*/
+  text-align: center;
+  color: #fff;
 }
 
+.arrow{
+  width: 18px;
+  height: 18px;
+  padding-right: 10px;
+}
 
+.container{
+  background: #fff;
+}
 
 .logout {
   position: relative;
-  margin-top: 1em;
-  line-height: 1.41176471;
   font-size: 16px;
-  padding: 10px 15px;
-  background: #fff;
+  margin: 30px 20px 0;
+  background: #F8F8F8;
   text-align: center;
-  border-bottom: 1rpx solid #d9d9d9;
-  border-top: 1rpx solid #d9d9d9;
+  color: #CC4053;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-radius: 10rpx;
+  border-color: #DFDFDF;
+  border-width: 2rpx;
+  border-style: solid;
+  /*border-bottom: 1rpx solid #d9d9d9;*/
+  /*border-top: 1rpx solid #d9d9d9;*/
 }
+
+.user-bottom{
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+  height: 80px;
+  background: #eee;
+}
+
+.user-left{
+  position: relative;
+  width: 50%;
+  background: #CC4053;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.user-right{
+  position: relative;
+  width: 50%;
+  background: #CC4053;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.user-right::before{
+  content: '';
+  width: 4rpx;
+  height: 34px;
+  border-right: 1rpx;
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  top: 4px;
+  border-radius: 2px;
+}
+
+.top-text{
+  font-size: 40rpx;
+  font-weight: 600;
+}
+
+.bottom-text{
+  font-size: 14px;
+}
+

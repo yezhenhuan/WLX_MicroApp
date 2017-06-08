@@ -1,0 +1,10 @@
+<view class="container">
+  <view class="phone">
+    <input class="inputfield" bindinput="verifyMobile" type="number" maxlength="11" focus="{{true}}" placeholder="请输入手机号" />
+    <button class="codebutton"  bindtap="getCode" disabled="{{smsCodeDisabled}}">{{codeBtnText}}</button>
+   </view>
+  <view class="code">
+    <input class="inputfield"  bindinput="verifyCode" maxlength="8" focus="{{true}}" placeholder="请输入验证码" />
+  </view>
+    <button class="enter" disabled="{{btnEnable}}" type="primary" form-type="submit" bindtap="bindMobile">确认</button>
+</view>
