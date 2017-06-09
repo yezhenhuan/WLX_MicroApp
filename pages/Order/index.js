@@ -33,7 +33,14 @@ Page({
   // 左右滑动
   bindChange: function (e) {
     var that = this;
-    that.setData({ currentTab: e.detail.current });
+    that.setData({ 
+      currentTab: e.detail.current,
+      oneList: null,
+    });
+
+    var selectTabIndex = that.data.currentTab;
+    var orderType = that.data.orderType;
+    that.getOrderList(orderType[selectTabIndex]);
   },
 
   // 切换顶部tab
@@ -67,11 +74,11 @@ Page({
     var that = this;
 
     // 模拟数据
-    var list = vrData.orderList;
-    console.log(vrData);
-    that.setData({
-      orderList: list
-    })
+    // var list = vrData.orderList;
+    // console.log(vrData);
+    // that.setData({
+    //   orderList: list
+    // })
 
     wx.showLoading({
     title: '加载中',
@@ -85,6 +92,9 @@ Page({
     // app.WxService.sendRrquest(url, 'GET', data, {})
     //   .then(function (response) {
     //     wx.hideLoading()
+    //     console.log(response);
+    //     if (success) {
+          
     //     var orderList = response.data.data.Datalist;
     //     if (!orderList.length) {
     //       that.setData({
@@ -95,6 +105,12 @@ Page({
     //         orderList: response.data.data.Datalist
     //       })
     //     }
+
+
+    //     }
+
+       
     //   });
+
   }
 })

@@ -1,4 +1,9 @@
+.content{
+  display: block;
+}
+
 .swiper-tab {
+  position: absolute;
   display: flex;
   top:0;
   left: 0;
@@ -67,7 +72,7 @@
     width: 100%;
     position: absolute;
     bottom: 0;
-    top: 88rpx;
+    top: 0rpx;
     left: 0;
     right: 0;
     text-align: center;
@@ -128,6 +133,7 @@
   left: 0;*/
   width: 100%;
   height: 100%;
+  background: #F2f2f2;
 }
 
 .scroll-content{
