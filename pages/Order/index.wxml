@@ -23,7 +23,10 @@
             </view>
             <view class="productListContent" wx:for-items="{{orderList[index].OrderProducts}}" wx:key="{{index}}" data-index="{{index}}">
               <view class="productListImg"> 
-                <image src="{{item.productImage ? item.productImage : '/assets/images/Icon/defaultFood.png'}}"></image>
+                <image src="{{item.productImage ? item.productImage : '/assets/images/Icon/defaultFood.png'}}" wx:if="{{item.ProductTypeId != 0}}">
+                </image>
+                <image src="{{item.productImage ? item.productImage : '/assets/images/Icon/pay.png'}}" wx:if="{{item.ProductTypeId == 0}}">
+                </image>
               </view>
               <view class="productItemDesc">
                 <view class="productItemTitle">
