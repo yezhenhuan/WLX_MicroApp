@@ -30,7 +30,6 @@ App({
           that.WxService.sendRrquest(url, 'POST', { code: res.code })
             .then(function (response) {
               var res = response.data;
-              console.log("返回的数据为：" + res);
               if (res.success) {
                 wx.setStorageSync('AccessToken', res.accessToken);                
               } else {
