@@ -3,7 +3,8 @@ var apiUrl = {
   getShopList: '/Shop/GetOpenShopList',
   getUserFinance: '/User/GetUserFinance',
   goPay: '/Order/GoPay',
-  getUserOrderList:'/order/getuserorderlist'
+  getUserOrderList: '/order/getuserorderlist',
+  updateUserInfo: '/User/UpdateUserInfo'
 }
 
 module.exports = apiUrl;

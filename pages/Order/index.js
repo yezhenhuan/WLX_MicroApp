@@ -7,7 +7,7 @@ Page({
     winWidth: 0,
     winHeight: 0,
     currentTab: 1,
-    tabTitle: ['待付款', '已付款', '已消费', '待退款', '已退款'],
+    tabTitle: ['待付款', '已付款', '已消费'],
     orderType: ["0", "1", "9", "10", "11"],
     orderList: null,
     oneList: null,
