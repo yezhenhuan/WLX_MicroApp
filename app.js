@@ -4,12 +4,17 @@ var request = require('helpers/requestService.js')
 
 App({
   onLaunch: function (options) {
-    if (!wx.getStorageSync("AccessToken")) {
-      this.getUserInfo('');
-    } else {
-      wx.navigateBack({
-        url: 'pages/Start/index'
-      })
+    var accessToken = wx.getStorageSync("AccessToken");
+    var expriesTime = wx.getStorageSync("ExpiresTime")
+    if (!accessToken || !expriesTime) {      
+        this.getUserInfo('');
+    }else{
+      var date = new Date(parseInt(expriesTime.slice(6)));
+      var now = new Date();
+      if(date<now){
+        wx.clearStorage();
+        this.getUserInfo('');
+      }
     }
   },
   onShow: function (options) {
@@ -31,13 +36,14 @@ App({
             .then(function (response) {
               var res = response.data;
               if (res.success) {
-                wx.setStorageSync('AccessToken', res.accessToken);                
+                wx.setStorageSync('AccessToken', res.accessToken);
+                wx.setStorageSync('ExpiresTime', res.expiresTime);
               } else {
                 wx.showToast({
                   title: '与服务器通信过程发生错误，请稍后再试！',
-                  complete:function(){
+                  complete: function () {
                     wx.navigateBack({
-                      url:'pages/Start/index'
+                      url: 'pages/Start/index'
                     })
                   }
                 })

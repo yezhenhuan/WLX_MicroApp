@@ -37,7 +37,7 @@ Page({
   },
   getShopList: function () {
     wx.showLoading({
-      title: '加载数据中...',
+      title: '加载数据中',
     })
     var that = this;
     //发送请求，请求店铺数据
@@ -71,7 +71,7 @@ Page({
   },
   getUserFinance: function () {
     wx.showLoading({
-      title: '加载数据中...',
+      title: '加载数据中',
     });
     var that = this;
     var url = app.ApiUrl.getUserFinance;
