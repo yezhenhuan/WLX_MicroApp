@@ -26,6 +26,22 @@ Page({
 
 
     // 发送请求获取验证码接口
+    var url = app.ApiUrl.getUserOrderList;
+    var data = {"orderstate": type,"startnum": "0","requestnum": "20"};
+    app.WxService.sendRrquest(url, 'GET', data, {})
+      .then(function (response) {
+        wx.hideLoading()
+        var orderList = response.data.data.Datalist;
+        if (!orderList.length) {
+          that.setData({
+            orderList: null
+          })
+        }else {
+          that.setData({
+            orderList: response.data.data.Datalist
+          })
+        }
+      });
 
 
      wx.showToast({

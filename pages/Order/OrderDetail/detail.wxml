@@ -1,5 +1,5 @@
 <view class="container">
-  <view  class="orderInfoContainer" hidden="{{orderInfoHidden}}"  style="display:{{hideview ? none : inline}};">
+  <view  class="orderInfoContainer" hidden="{{orderUnuseShow}}"  style="display:{{hideview ? none : inline}};">
     <view class="orderTitle font12 marginBottom15 bgColorF orderContent">
       <text class="marginLeft5">订单号：{{orderInfo.OrderId}}</text>
       <text class="floatRight status-label" hidden="{{orderInfo.OrderState == 1 ? true : false}}">已消费</text>
@@ -23,7 +23,7 @@
       </view>
       <view class="time-label">
         <view class="time-label-left">有效日期</view>
-        <view class="time-label-right">{{orderInfo.ExpireTime}}</view>
+        <!-- <view class="time-label-right">{{orderInfo.ExpireTime}}</view> -->
         <view class="time-label-right">2017-11-02 24:00:00</view>
       </view>
       <view class="time-label">
@@ -34,9 +34,7 @@
     </view>
   </view>
 
-
-
-  <view class="back-container" hidden="{{!orderInfoHidden}}"  style="display:{{hideview ? none : inline}};">
+  <view class="back-container" hidden="{{backInfoShow}}"  style="display:{{hideview ? none : inline}};">
       <view class="back-title" wx:for="{{['退款金额', '退回账户', '到账时间']}}">
         <text>{{item}}:</text > 
         <text class="back-decr{{index==0 ? '0' : ''}}">{{index == 0 ? orderInfo.ProductPrice : vrDesc[index]}}</text>  
@@ -59,15 +57,46 @@
         </view>
       </view>
    </view>
-
-
   </view>
 
 
-
-
-
-
+   <view class="pay"  hidden="{{payInfoShow}}"  style="display:{{hideview ? none : inline}};">
+      <view class="pay-label">
+        <view class="pay-label-left">付款金额</view>
+        <!-- <view class="time-label-right">{{orderInfo.CreateTime}}</view> -->
+        <view class="pay-label-right">¥ {{orderInfo.ProductPrice}}</view>
+      </view>
+      <view class="pay-label">
+        <view class="pay-label-left">商品</view>
+        <!-- <view class="time-label-right">{{orderInfo.CreateTime}}</view> -->
+        <view class="pay-label-right">用户在线支付订单</view>
+      </view>
+      <view class="pay-label">
+        <view class="pay-label-left">商户名称</view>
+        <!-- <view class="time-label-right">{{orderInfo.CreateTime}}</view> -->
+        <view class="pay-label-right">微领袖咖啡厅</view>
+      </view>
+      <view class="pay-label">
+        <view class="pay-label-left">当前状态</view>
+        <!-- <view class="time-label-right">{{orderInfo.CreateTime}}</view> -->
+        <view class="pay-label-right">支付成功</view>
+      </view>
+       <view class="pay-label">
+        <view class="pay-label-left">交易时间</view>
+        <!-- <view class="time-label-right">{{orderInfo.CreateTime}}</view> -->
+        <view class="pay-label-right">2017-04-22</view>
+      </view>
+      <view class="pay-label">
+        <view class="pay-label-left">支付方式</view>
+        <!-- <view class="time-label-right">{{orderInfo.CreateTime}}</view> -->
+        <view class="pay-label-right">微信支付</view>
+      </view>
+      <view class="pay-label">
+        <view class="pay-label-left">订单编号</view>
+        <!-- <view class="time-label-right">{{orderInfo.CreateTime}}</view> -->
+        <view class="pay-label-right">{{orderInfo.OrderId}}</view>
+      </view>
+   </view>
 
 
 

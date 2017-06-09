@@ -4,26 +4,18 @@ var request = require('helpers/requestService.js')
 
 App({
   onLaunch: function (options) {
-    var accessToken = wx.getStorageSync("AccessToken");
-    var expriesTime = wx.getStorageSync("ExpiresTime")
-    if (!accessToken || !expriesTime) {
+    if (!wx.getStorageSync("AccessToken")) {
       this.getUserInfo('');
     } else {
-      var date = new Date(parseInt(expriesTime.slice(6)));
-      var now = new Date();
-      var time = now.getTime() - 1000 * 60 * 10;
-
-      if (date < time) {
-        wx.clearStorage();
-        this.getUserInfo('');
-      }
+      wx.navigateBack({
+        url: 'pages/Start/index'
+      })
     }
   },
   onShow: function (options) {
   },
   globalData: {
-    userInfo: null,
-    errorCount: 0
+    userInfo: null
   },
   getUserInfo: function (cb) {
     var that = this
@@ -35,27 +27,21 @@ App({
         success: function (res) {
           //换取openid & session_key
           var url = that.ApiUrl.onLogin;
-          that.WxService.sendRrquest(url, 'POST', { code: res.code }, true)
+          that.WxService.sendRrquest(url, 'POST', { code: res.code })
             .then(function (response) {
               var res = response.data;
+              console.log("返回的数据为：" + res);
               if (res.success) {
-                wx.hideLoading();
-                that.globalData.errorCount = 0;
-                wx.setStorageSync('AccessToken', res.accessToken);
-                wx.setStorageSync('ExpiresTime', res.expiresTime);
+                wx.setStorageSync('AccessToken', res.accessToken);                
               } else {
-                that.globalData.errorCount++;
-                wx.hideLoading();
-                if (that.globalData.errorCount <= 3) {
-                  wx.showLoading({
-                    title: '与服务器通信过程发生错误，正在重新连接',
-                  })
-                  that.getUserInfo('');
-                } else {
-                  wx.showToast({
-                    title: '服务器出小差了，请稍后再试吧！',
-                  })
-                }
+                wx.showToast({
+                  title: '与服务器通信过程发生错误，请稍后再试！',
+                  complete:function(){
+                    wx.navigateBack({
+                      url:'pages/Start/index'
+                    })
+                  }
+                })
               }
             }, function (error) {
               wx.showToast({

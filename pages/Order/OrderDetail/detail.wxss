@@ -244,3 +244,40 @@ page{
     width:2rpx;
     height:100%;
 }
+
+.pay-title{
+  padding: 10px;f
+  background: #fff;
+}
+
+.pay{
+  position: relative;
+  margin-top: 20px;
+  padding: 10px 0 20px;
+  color: #888888;
+  background: #fff;
+}
+
+.pay-label{
+  display: flex;
+  padding: 10px 12px 12px 10px; 
+}
+
+.pay-label-left{
+  flex: 1;
+}
+
+/*.pay-label::before{
+  content: '';
+  width: 6rpx;
+  height: 16px;
+  border-right: 1rpx;
+  background-color: #4ABDCC;
+  position: absolute;
+  left: 0;
+  top: 16px;
+}*/
+
+
+
+

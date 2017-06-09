@@ -156,6 +156,7 @@ Page({
         if (parseFloat(this.data.unRebateMoney) > parseFloat(this.data.totalMoney)) {
           wx.showToast({
             title: '不可优惠金额不能大于消费总额！',
+            image: '/assets/images/Icon/warning.png',
             mask: true
           });
           this.setData({
@@ -171,7 +172,8 @@ Page({
     } else {
       wx.showToast({
         title: '请先输入消费金额！',
-        mask: false
+        mask: false,
+        image: '/assets/images/Icon/warning.png',
       });
       this.setData({
         unRebateMoney: ''
@@ -407,6 +409,8 @@ Page({
             },
             'fail': function (res) {
               wx.showToast({
+                title: '支付失败',
+                image: '/assets/images/Icon/error.png',
                 title: '支付已取消',
               })
             }
@@ -414,6 +418,8 @@ Page({
         } else {
           wx.hideLoading();
           wx.showToast({
+            title: '请求支付失败！',
+            image: '/assets/images/Icon/error.png',
             title: '',
           })
         }

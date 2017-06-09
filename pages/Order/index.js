@@ -1,12 +1,13 @@
-// var vrData = require('../../data/orderListData.js');
+var vrData = require('../../data/orderListData.js');
 var siteconfig = require('../../config/config.js');
+
 var app = getApp()
 Page({
   data: {
     winWidth: 0,
     winHeight: 0,
     currentTab: 1,
-    tabTitle: ['待付款', '已付款', '已消费', '待退款', '已退款'],
+    tabTitle: ['待付款', '已付款', '已消费'],
     orderType: ["0", "1", "9", "10", "11"],
     orderList: null,
     oneList: null,
@@ -32,7 +33,13 @@ Page({
   // 左右滑动
   bindChange: function (e) {
     var that = this;
-    that.setData({ currentTab: e.detail.current });
+    that.setData({ 
+      currentTab: e.detail.current,
+    });
+
+    var selectTabIndex = that.data.currentTab;
+    var orderType = that.data.orderType;
+    that.getOrderList(orderType[selectTabIndex]);
   },
 
   // 切换顶部tab
@@ -40,9 +47,9 @@ Page({
     var that = this;
     if (that.data.currentTab === e.target.dataset.current) {
       return;
-    }
-    that.setData({
-      currentTab: e.target.dataset.current
+    } 
+   that.setData({
+     currentTab: e.target.dataset.current,
     })
     var selectTabIndex = that.data.currentTab;
     var orderType = that.data.orderType;
@@ -65,11 +72,11 @@ Page({
     var that = this;
 
     // 模拟数据
-    // var list = vrData.orderList;
-    // console.log(vrData);
-    // that.setData({
-    //   orderList: list
-    // })
+    var list = vrData.orderList;
+    console.log(vrData);
+    that.setData({
+      orderList: list
+    })
 
     wx.showLoading({
       title: '加载中',
@@ -78,28 +85,29 @@ Page({
       wx.hideLoading()
     }, 2000)
 
-    var url = app.ApiUrl.getUserOrderList;
-    app.WxService.sendRrquest(url, 'GET', { orderstate: type, startnum: 0, requestnum: 20 })
-      .then(function (res) {
-        wx.hideLoading()
-        var orderList = res.data.data.Datalist;
-        if (res.data.success) {
-          if (!orderList.length) {
-            that.setData({
-              orderList: null
-            })
-          } else {
-            that.setData({
-              orderList: res.data.data.Datalist
-            })
-          }
-        } else {
-          wx.showToast({
-            title: res.data.msg
-          })
-        }        
-      }, function () {
+    // var url = app.ApiUrl.getUserOrderList;
+    // var data = {"orderstate": type,"startnum": "0","requestnum": "50"};
+    // app.WxService.sendRrquest(url, 'GET', data, {})
+    //   .then(function (response) {
+    //     wx.hideLoading()
+    //     console.log(response);
+    //     var orderList = response.data.data.Datalist;
+    //     if (!orderList.length) {
+    //       that.setData({
+    //         orderList: null
+    //       })
+    //     }else {
+    //       that.setData({
+    //         orderList: response.data.data.Datalist
+    //       })
+    //     }
+       
+    //   });
+  },
 
-      });
+  // 支付
+  gotoPay: function (event){
+    var orderInfo = event.currentTarget.dataset.orderinfo;
+    console.log(orderInfo);
   }
 })
