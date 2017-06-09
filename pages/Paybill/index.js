@@ -26,11 +26,17 @@ Page({
     chkUseScore: true,
     chkUseBalance: true,
 
-    isBalancePay: true
+    isBalancePay: true,
+    isNeedRefesh: false
   },
   onLoad: function (options) {
     this.getShopList();
     this.getUserFinance();
+  },
+  onShow: function () {
+    if (this.data.isNeedRefesh) {
+      this.getUserFinance();
+    }
   },
   onShareAppMessage: function () {
 
@@ -84,10 +90,13 @@ Page({
             balance: res.data.balance,
             rateDiscount: res.data.rateDiscount,
             score2Money: res.data.score2Money,
-            totalScore: res.data.totalScore
+            totalScore: res.data.totalScore,
+            isNeedRefesh: false
           });
         } else {
-
+          wx.showToast({
+            title: '获取用户财务信息失败！',
+          })
         }
       }, function () {
         wx.showToast({
@@ -332,7 +341,7 @@ Page({
           chkUseScore: chkUseScore,
           chkBalance: chkUseBalance,
           pickedShopId: that.data.pickedShopId
-        }).then(function (response) {
+        }, true).then(function (response) {
           wx.hideLoading();
           var res = response.data;
           if (res.success && res.status == "paySuccess") {
@@ -366,7 +375,7 @@ Page({
         chkUseScore: chkUseScore,
         chkBalance: chkUseBalance,
         pickedShopId: that.data.pickedShopId
-      }).then(function (response) {
+      }, true).then(function (response) {
         wx.hideLoading();
         var res = response.data;
         if (res.success) {
@@ -380,7 +389,21 @@ Page({
             'success': function (res) {
               wx.showToast({
                 title: '支付成功',
+                success: function () {
+                  that.setData({
+                    totalMoney: '',
+                    unRebateMoney: '',
+                    chkUnrebate: false
+                  });
+                  setTimeout(
+                    wx.switchTab({
+                      url: '/pages/Order/index',
+                    }), 3000);
+                }
               })
+              that.setData({
+                isNeedRefesh: true
+              });
             },
             'fail': function (res) {
               wx.showToast({

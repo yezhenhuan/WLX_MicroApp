@@ -12,7 +12,6 @@ Page({
     if (this.data.userAvatarUrl == '' || this.data.userNickName) {
       this.getUserInfo();
     }
-
   },
   // 获取个人信息
   getUserInfo: function () {
@@ -24,10 +23,25 @@ Page({
           userAvatarUrl: userInfo.avatarUrl,
           userNickName: userInfo.nickName
         });
-        //todo  更新到数据库中
+        //更新到数据库中
+        var url = app.ApiUrl.updateUserInfo;
+        var data = JSON.stringify(userInfo);
+        app.WxService.sendRrquest(url, 'POST', { userInfo: data }, true)
+          .then(function (response) {
+            var res = response.data;
+            if (res.success) {
 
+            } else {
+
+            }
+          }, function () {
+
+          });
       }
     })
+  },
+  updateUser: function () {
+    this.getUserInfo();
   },
   getUserFinance: function () {
     wx.showLoading({

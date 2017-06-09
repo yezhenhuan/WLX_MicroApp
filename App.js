@@ -11,7 +11,9 @@ App({
     } else {
       var date = new Date(parseInt(expriesTime.slice(6)));
       var now = new Date();
-      if (date < now) {
+      var time = now.getTime() - 1000 * 60 * 10;
+
+      if (date < time) {
         wx.clearStorage();
         this.getUserInfo('');
       }
@@ -33,7 +35,7 @@ App({
         success: function (res) {
           //换取openid & session_key
           var url = that.ApiUrl.onLogin;
-          that.WxService.sendRrquest(url, 'POST', { code: res.code })
+          that.WxService.sendRrquest(url, 'POST', { code: res.code }, true)
             .then(function (response) {
               var res = response.data;
               if (res.success) {

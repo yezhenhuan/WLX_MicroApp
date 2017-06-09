@@ -1,6 +1,6 @@
 <view class="container">
   <view class="userinfo">
-    <view class="userinfo-avatar">
+    <view class="userinfo-avatar" bindtap="updateUser">
       <image src="{{userAvatarUrl ? userAvatarUrl :'/assets/images/Icon/defaultHeadImage.png'}}" background-size="cover"></image>
     </view>
     <text class="userinfo-nickname">{{userNickName?userNickName:'匿名用户'}}</text>
