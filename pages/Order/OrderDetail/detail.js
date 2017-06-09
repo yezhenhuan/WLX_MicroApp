@@ -1,4 +1,3 @@
-var dateFormat = require('./dateFormat.js');
 
 Page({
   data: {
@@ -16,7 +15,6 @@ Page({
       orderInfo: orderInfo,
       orderInfoHidden: hidden
     });
-
   }
 
 })

@@ -1,11 +1,12 @@
 {
   "pages": [
+    "pages/Order/index",
     "pages/Paybill/index",
     "pages/Start/Index",
-    "pages/Order/index",
+    
+    "pages/User/index",
     "pages/Order/OrderDetail/detail",
-    "pages/Phone/index",
-    "pages/User/index"
+    "pages/Phone/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#2C2C30",

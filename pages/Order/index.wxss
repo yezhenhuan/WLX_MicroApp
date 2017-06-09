@@ -43,22 +43,17 @@
 .productListImg image{
   display: flex;
   flex-direction: row;
-  width: 88rpx;
-  height: 88rpx;
+  width: 110rpx;
+  height: 99rpx;
 
 }
 
 .productItemTitle {
   vertical-align: top;
   font-size: 16px;
-  /*font-weight: 500;*/
   color:#000;
-  /*line-height: 24px;*/
-  /*text-overflow: ellipsis;*/
-  /*white-space: nowrap;*/
   padding-bottom: 6rpx;
   padding-right: 10px;
-  /*margin-left: : 20px;*/
 }
 
 .productListBottom {
@@ -119,9 +114,24 @@
   background-color: #eaeaea;
 }*/
 
+.swiper{
+    position: fixed;
+  top: 44px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-item-item{
+/*  position: relative;
+  top: 30px;
+  left: 0;*/
+  width: 100%;
+  height: 100%;
+}
 
 .scroll-content{
-  position: fixed;
+  /*position: fixed;*/
   bottom: 0px;
   top: 44px;
   width: 100%;

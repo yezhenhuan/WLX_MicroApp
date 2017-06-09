@@ -23,7 +23,7 @@
       </view>
       <view class="time-label">
         <view class="time-label-left">有效日期</view>
-        <view class="time-label-right">{{orderInfo.ExpireTime}}</view>
+        <!-- <view class="time-label-right">{{orderInfo.ExpireTime}}</view> -->
         <view class="time-label-right">2017-11-02 24:00:00</view>
       </view>
       <view class="time-label">
@@ -33,8 +33,6 @@
       </view>
     </view>
   </view>
-
-
 
   <view class="back-container" hidden="{{!orderInfoHidden}}"  style="display:{{hideview ? none : inline}};">
       <view class="back-title" wx:for="{{['退款金额', '退回账户', '到账时间']}}">

@@ -1,4 +1,4 @@
-// var vrData = require('../../data/orderListData.js');
+var vrData = require('../../data/orderListData.js');
 var siteconfig = require('../../config/config.js');
 
 var app = getApp()
@@ -43,7 +43,8 @@ Page({
       return;
     } 
    that.setData({
-     currentTab: e.target.dataset.current
+     currentTab: e.target.dataset.current,
+     oneList: null,
     })
     var selectTabIndex = that.data.currentTab;
     var orderType = that.data.orderType;
@@ -66,11 +67,11 @@ Page({
     var that = this;
 
     // 模拟数据
-    // var list = vrData.orderList;
-    // console.log(vrData);
-    // that.setData({
-    //   orderList: list
-    // })
+    var list = vrData.orderList;
+    console.log(vrData);
+    that.setData({
+      orderList: list
+    })
 
     wx.showLoading({
     title: '加载中',
@@ -79,21 +80,21 @@ Page({
       wx.hideLoading()
     },2000)
 
-    var url = app.ApiUrl.getUserOrderList;
-    var data = {"orderstate": type,"startnum": "0","requestnum": "20"};
-    app.WxService.sendRrquest(url, 'GET', data, {})
-      .then(function (response) {
-        wx.hideLoading()
-        var orderList = response.data.data.Datalist;
-        if (!orderList.length) {
-          that.setData({
-            orderList: null
-          })
-        }else {
-          that.setData({
-            orderList: response.data.data.Datalist
-          })
-        }
-      });
+    // var url = app.ApiUrl.getUserOrderList;
+    // var data = {"orderstate": type,"startnum": "0","requestnum": "20"};
+    // app.WxService.sendRrquest(url, 'GET', data, {})
+    //   .then(function (response) {
+    //     wx.hideLoading()
+    //     var orderList = response.data.data.Datalist;
+    //     if (!orderList.length) {
+    //       that.setData({
+    //         orderList: null
+    //       })
+    //     }else {
+    //       that.setData({
+    //         orderList: response.data.data.Datalist
+    //       })
+    //     }
+    //   });
   }
 })
