@@ -1,5 +1,5 @@
 var siteconfig = require('../../config/config.js');
-var app=getApp();
+var app = getApp();
 
 Page({
   data: {
@@ -10,21 +10,18 @@ Page({
     isAnyShopOpen: true,//是否有店铺营业
 
     totalMoney: '',
-    rateDiscount: '0.2',
+    rateDiscount: '0',
     unRebateMoney: '',
     useScore: 0,
     scoreDiscountMoney: '0',
     rateDiscountMoney: 0,
     realPayMoney: 0,
-    totalScore: '1500',
+    totalScore: '0',
     maxUseScore: '0',
     scoreCanDisCount: '0',
-    score2Money: '0.1',
-    balance: '500.00',
+    score2Money: '0',
+    balance: '0.00',
     useBalance: 0,
-    totalBalance: '650',
-    realMoney: '0',
-    payType: '1',
     chkUnrebate: false,
     chkUseScore: true,
     chkUseBalance: true,
@@ -32,22 +29,39 @@ Page({
     isBalancePay: true
   },
   onLoad: function (options) {
+    this.getShopList();
+    this.getUserFinance();
+  },
+  onShareAppMessage: function () {
+
+  },
+  getShopList: function () {
+    wx.showLoading({
+      title: '加载数据中',
+    })
     var that = this;
     //发送请求，请求店铺数据
     var url = app.ApiUrl.getShopList;
-    app.WxService.sendRrquest(url, 'GET', {}, {})
+    app.WxService.sendRrquest(url, 'GET', {})
       .then(function (response) {
         that.setData({
           shopList: response.data.data
         });
-        var pickedId = that.data.shopList[0].ShopID
-        that.setData({
-          pickedShopId: pickedId
-        });
-        var pickedShopName = that.data.shopList[0].ShopName;
-        that.setData({
-          pickedShopName: pickedShopName
-        });
+        if (that.data.shopList) {
+          var pickedId = that.data.shopList[0].ShopID
+          that.setData({
+            pickedShopId: pickedId
+          });
+          var pickedShopName = that.data.shopList[0].ShopName;
+          that.setData({
+            pickedShopName: pickedShopName
+          });
+        } else {
+          that.setData({
+            isAnyShopOpen: false,
+            pickedShopName: '暂无店铺营业'
+          })
+        }
       }, function () {
         that.setData({
           isAnyShopOpen: false,
@@ -55,8 +69,31 @@ Page({
         })
       });
   },
-  onShareAppMessage: function () {
+  getUserFinance: function () {
+    wx.showLoading({
+      title: '加载数据中',
+    });
+    var that = this;
+    var url = app.ApiUrl.getUserFinance;
+    app.WxService.sendRrquest(url, 'GET', {}, )
+      .then(function (response) {
+        wx.hideLoading();
+        var res = response.data;
+        if (res.success) {
+          that.setData({
+            balance: res.data.balance,
+            rateDiscount: res.data.rateDiscount,
+            score2Money: res.data.score2Money,
+            totalScore: res.data.totalScore
+          });
+        } else {
 
+        }
+      }, function () {
+        wx.showToast({
+          title: '获取用户财务信息失败！',
+        })
+      });
   },
   //店铺改变
   bindShopChange: function (e) {
@@ -272,40 +309,70 @@ Page({
     }
   },
   goPay: function () {
+    wx.showLoading({
+      title: '创建订单中',
+    });
     var that = this;
     if (this.data.isBalancePay) {
+      if (this.data.realPayMoney <= 0) {
+        wx.showToast({
+          title: '请输入消费的金额',
+        })
+      } else {
+        var chkUnrebate = that.data.chkUnrebate ? '1' : '0';
+        var chkUseScore = that.data.chkUseScore ? '1' : '0';
+        var chkUseBalance = that.data.chkUseBalance ? '1' : '0';
 
+        var url = app.ApiUrl.goPay;
+        app.WxService.sendRrquest(url, 'POST', {
+          txtTotalMoney: that.data.totalMoney,
+          txtUnRebateMoney: that.data.unRebateMoney,
+          txtRateDiscountMoney: that.data.rateDiscountMoney,
+          txtUseBalance: that.data.useBalance,
+          txtUseScore: that.data.useScore,
+          chkUnRebate: chkUnrebate,
+          chkUseScore: chkUseScore,
+          chkBalance: chkUseBalance,
+          pickedShopId: that.data.pickedShopId
+        }).then(function (response) {
+          wx.hideLoading();
+          var res = response.data;
+          if (res.success && res.status == "paySuccess") {
+            wx.showToast({
+              title: '支付成功',
+            })
+          } else {
+            wx.showToast({
+              title: res.msg,
+            })
+          }
+        }, function () {
+          wx.showToast({
+            title: '获取用户财务信息失败！',
+          })
+        });
+      }
     } else {
       var chkUnrebate = that.data.chkUnrebate ? '1' : '0';
       var chkUseScore = that.data.chkUseScore ? '1' : '0';
       var chkUseBalance = that.data.chkUseBalance ? '1' : '0';
-      var openId = '';
-      try {
-        openId = wx.getStorageSync('openId')
-      } catch (e) {
-        // Do something when catch error
-      }
 
-      wx.request({
-        url: siteconfig.officialPath + '/GetPayInfo/Index',
-        header: {
-          'content-type': 'application/json'
-        },
-        method: 'POST',
-        data: {
-          // txtTotalMoney: that.data.totalMoney,
-          // txtUnRebateMoney: that.data.unRebateMoney,
-          // txtRateDiscountMoney: that.data.rateDiscountMoney,
-          // txtUseBalance: that.data.useBalance,
-          // txtUseScore: that.data.useScore,
-          // chkUnRebate: chkUnrebate,
-          // chkUseScore: chkUseScore,
-          // chkBalance: chkUseBalance,
-          // pickedShopId: that.data.pickedShopId
-          openId: openId
-        },
-        success: function (res) {
-          var data = res.data.data;
+      var url = app.ApiUrl.goPay;
+      app.WxService.sendRrquest(url, 'POST', {
+        txtTotalMoney: that.data.totalMoney,
+        txtUnRebateMoney: that.data.unRebateMoney,
+        txtRateDiscountMoney: that.data.rateDiscountMoney,
+        txtUseBalance: that.data.useBalance,
+        txtUseScore: that.data.useScore,
+        chkUnRebate: chkUnrebate,
+        chkUseScore: chkUseScore,
+        chkBalance: chkUseBalance,
+        pickedShopId: that.data.pickedShopId
+      }).then(function (response) {
+        wx.hideLoading();
+        var res = response.data;
+        if (res.success) {
+          var data = res.data;
           wx.requestPayment({
             'timeStamp': data.timeStamp,
             'nonceStr': data.nonceStr,
@@ -321,18 +388,24 @@ Page({
               wx.showToast({
                 title: '支付失败',
                 image: '/assets/images/Icon/error.png',
+                title: '支付已取消',
               })
             }
           });
-        },
-        fail: function () {
+        } else {
+          wx.hideLoading();
           wx.showToast({
             title: '请求支付失败！',
             image: '/assets/images/Icon/error.png',
+            title: '',
           })
         }
-      })
 
+      }, function () {
+        wx.showToast({
+          title: '获取用户财务信息失败！',
+        })
+      });
     }
   }
 })

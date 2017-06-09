@@ -9,7 +9,7 @@ Page({
     currentTab: 1,
     tabTitle: ['待付款', '已付款', '已消费', '待退款', '已退款'],
     orderType: ["0", "1", "9", "10", "11"],
-    orderList:null,
+    orderList: null,
     oneList: null,
   },
 
@@ -48,10 +48,16 @@ Page({
     var that = this;
     if (that.data.currentTab === e.target.dataset.current) {
       return;
+<<<<<<< HEAD
     } 
    that.setData({
      currentTab: e.target.dataset.current,
      oneList: null,
+=======
+    }
+    that.setData({
+      currentTab: e.target.dataset.current
+>>>>>>> zhenhuan/master
     })
     var selectTabIndex = that.data.currentTab;
     var orderType = that.data.orderType;
@@ -59,10 +65,10 @@ Page({
   },
 
   // 进入订单详情页
-  showOrderDetail: function (event){
-    if (!this.data.currentTab){
+  showOrderDetail: function (event) {
+    if (!this.data.currentTab) {
       return;
-    } 
+    }
     var orderInfo = event.currentTarget.dataset.orderinfo;
     wx.navigateTo({
       url: "/pages/Order/OrderDetail/detail?orderInfo=" + JSON.stringify(orderInfo)
@@ -70,7 +76,7 @@ Page({
   },
 
   // 获取订单数据
-  getOrderList: function (type){
+  getOrderList: function (type) {
     var that = this;
 
     // 模拟数据
@@ -81,11 +87,11 @@ Page({
     // })
 
     wx.showLoading({
-    title: '加载中',
+      title: '加载中',
     })
-    setTimeout(function(){
+    setTimeout(function () {
       wx.hideLoading()
-    },2000)
+    }, 2000)
 
     var url = app.ApiUrl.getUserOrderList;
     var data = {"orderstate": type,"startnum": "0","requestnum": "20"};
@@ -111,6 +117,5 @@ Page({
 
        
       });
-
   }
 })

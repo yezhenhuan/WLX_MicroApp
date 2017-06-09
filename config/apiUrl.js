@@ -1,7 +1,9 @@
 var apiUrl = {
-  onLogin:'/WxOpen/OnLogin',
+  onLogin: '/WxOpen/OnLogin',
   getShopList: '/Shop/GetOpenShopList',
-  getUserOrderList: '/order/getuserorderlist'
+  getUserFinance: '/User/GetUserFinance',
+  goPay: '/Order/GoPay',
+  getUserOrderList:'/order/getuserorderlist'
 }
 
 module.exports = apiUrl;
