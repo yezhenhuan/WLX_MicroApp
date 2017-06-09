@@ -35,7 +35,6 @@ Page({
     var that = this;
     that.setData({ 
       currentTab: e.detail.current,
-      oneList: null,
     });
 
     var selectTabIndex = that.data.currentTab;
@@ -48,16 +47,9 @@ Page({
     var that = this;
     if (that.data.currentTab === e.target.dataset.current) {
       return;
-<<<<<<< HEAD
     } 
    that.setData({
      currentTab: e.target.dataset.current,
-     oneList: null,
-=======
-    }
-    that.setData({
-      currentTab: e.target.dataset.current
->>>>>>> zhenhuan/master
     })
     var selectTabIndex = that.data.currentTab;
     var orderType = that.data.orderType;
@@ -99,8 +91,6 @@ Page({
       .then(function (response) {
         wx.hideLoading()
         console.log(response);
-        if (success) {
-          
         var orderList = response.data.data.Datalist;
         if (!orderList.length) {
           that.setData({
@@ -111,11 +101,13 @@ Page({
             orderList: response.data.data.Datalist
           })
         }
-
-
-        }
-
        
       });
+  },
+
+  // 支付
+  gotoPay: function (event){
+    var orderInfo = event.currentTarget.dataset.orderinfo;
+    console.log(orderInfo);
   }
 })

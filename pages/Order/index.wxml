@@ -5,54 +5,42 @@
   </view>
 </view>
 
-
-
-
 <swiper class="swiper"  bindchange="bindChange" duration="300"  data-current="{{currentTab}}" current="{{currentTab}}">
-
   <swiper-item class="swiper-item-item" wx:for-items="{{tabTitle}}" wx:key="{{index}}">
-
-
-
-
-    <view class="order-empty" >
+    <view class="order-empty" hidden="{{orderList ?  true : false}}"  style="display:{{hideview ? none : inline}};">
       <image src="/assets/images/Icon/order-empty.png" class="order-empty-img"></image>
-      <view class="text">您还没有相关订单{{currentTab}}</view>
+      <view class="text">您还没有相关订单</view>
     </view>
 
-    <scroll-view class="scroll-content" scroll-y="{{true}}" hidden="{{orderList ? false : true}}"  style="display:{{hideview ? none : inline}};">
-    <view class="myOrderCon">
-        <view class="listContent" wx:for-items="{{orderList}}" wx:key="{{index}}" data-index="{{index}}">
-        <view class="listBox" bindtap="showOrderDetail" data-orderInfo="{{orderList[index]}}">
-          <view class="productListTitle borderBtm">
-            <image src="/assets/images/Icon/order_putong.png" class="icon"></image>
-            <text class="font12 marginLeft5 checkcode">订单编号：{{orderList[index].OrderId}}</text>
-            <text class="floatRight color9 font12">订单{{tabTitle[currentTab]}}</text>
-          </view>
-          <view class="productListContent" wx:for-items="{{orderList[index].OrderProducts}}" wx:key="{{index}}" data-index="{{index}}">
-            <view class="productListImg"> 
-              <image src="{{item.productImage ? item.productImage : '/assets/images/Icon/defaultFood.png'}}"></image>
+      <scroll-view class="scroll-content" scroll-y="{{true}}" hidden="{{orderList ? false : true}}"  style="display:{{hideview ? none : inline}};">
+      <view class="myOrderCon">
+          <view class="listContent" wx:for-items="{{orderList}}" wx:key="{{index}}" data-index="{{index}}">
+          <view class="listBox" bindtap="showOrderDetail" data-orderInfo="{{orderList[index]}}">
+            <view class="productListTitle borderBtm">
+              <image src="/assets/images/Icon/order_putong.png" class="icon"></image>
+              <text class="font12 marginLeft5 checkcode">订单编号：{{orderList[index].OrderId}}</text>
+              <text class="floatRight color9 font12">订单{{tabTitle[currentTab]}}</text>
             </view>
-            <view class="productItemDesc">
-              <view class="productItemTitle">
-                <text>{{item.ProductName}}</text>
+            <view class="productListContent" wx:for-items="{{orderList[index].OrderProducts}}" wx:key="{{index}}" data-index="{{index}}">
+              <view class="productListImg"> 
+                <image src="{{item.productImage ? item.productImage : '/assets/images/Icon/defaultFood.png'}}"></image>
               </view>
-              <view class=" color9 font12">
-                <text class="product-count">数量: {{item.ProductNumber}}</text>
-              </view>
-              <view class="productItemTitle colorRed font12 product-price">
-                <text class="floatLeft ">￥{{item.ProductPrice}}</text>
+              <view class="productItemDesc">
+                <view class="productItemTitle">
+                  <text>{{item.ProductName}}</text>
+                </view>
+                <view class=" color9 font12">
+                  <text class="product-count">数量: {{item.ProductNumber}}</text>
+                </view>
+                <view class="productItemTitle colorRed font12 product-price">
+                  <text class="floatLeft ">￥{{item.ProductPrice}}</text>
+                </view>
               </view>
             </view>
+            <view class="pay-content" wx:if="{{currentTab == 0}}"><text class="pay-time">下单时间:{{orderList[index].CreateTime}} </text><button class="pay-button" bindtap="gotoPay" data-orderInfo="{{orderList[index]}}">去支付</button></view>
           </view>
         </view>
       </view>
-    </view>
-    </scroll-view>
-
-
-
+      </scroll-view>
   </swiper-item>
-
-
 </swiper>

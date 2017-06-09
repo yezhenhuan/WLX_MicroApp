@@ -1,6 +1,3 @@
-.content{
-  display: block;
-}
 
 .swiper-tab {
   position: absolute;
@@ -109,16 +106,6 @@
   margin-bottom: 20px;
 }
 
-/*.swiper{
-  display: block; 
-  width: 100%; 
-  overflow: hidden;
-  margin: 0;
-  border: 0;
-
-  background-color: #eaeaea;
-}*/
-
 .swiper{
     position: fixed;
   top: 44px;
@@ -128,18 +115,22 @@
 }
 
 .swiper-item-item{
-/*  position: relative;
-  top: 30px;
-  left: 0;*/
+  position: absolute;
+  /*top: 30px;*/
+  left: 0;
+
   width: 100%;
   height: 100%;
   background: #F2f2f2;
 }
 
 .scroll-content{
-  /*position: fixed;*/
+  position: fixed;
+  display: inline;
   bottom: 0px;
-  top: 44px;
+  /*margin-bottom: 44px;*/
+  padding-bottom: 44px;
+  top: 0px;
   width: 100%;
   right: 0;
   left: 0;
@@ -176,5 +167,27 @@
   margin-left: 10px;
 }
 
+.pay-content{
+  display: flex;
+  border-top: 1px solid #eee;
+  height: 44px;
+}
+
+.pay-time{
+  line-height: 44px;
+  flex: 1;
+  justify-content: center;
+  color: #7F8389;
+}
+
+.pay-button{
+  width: 74px;
+  height: 34px;
+  line-height: 34px;
+  font-size: 14px;
+  margin: 7px 10px 0 0;
+  background: #1AAE18;
+  color: #fff;
+}
 
 
